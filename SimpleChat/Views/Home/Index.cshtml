@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/Loading.css">  
+    <link rel="stylesheet" href="~/Content/Buttons.css">  
+    <title></title>
+</head>
+<body>
+    <input id="latitude" value="" type="hidden">
+    <input id="longitude" value="" type="hidden">   
+    <label id="ShowMyId" style="margin-left:0px">
+        Мой Id :</label ><br>
+        <label id="ShowInterlocutorsId" style="margin-left:0px">
+            Связан с :</label >
+            <center>
+                <h2>Wantspeak</h2>                
+                </center>
+                <div class="main">
+                    <div id="loginBlock">                  
+                          <p> <b> Я:</b><br>
+                        <input id="IM" type="radio" name="GenderI" value="false" checked> М<Br>
+                        <input id="IW" type="radio" name="GenderI" value="false">Ж<Br>                                                                  
+                          <b>  Общаться с:</b><br>
+                        <input id="SM" type="radio" name="GenderSearch" value="false"> М<Br>
+                        <input id="SW" type="radio" name="GenderSearch" value="false" checked>Ж<Br>                           
+                        </p>
+                        <div id="Loading" class="spinner" style="visibility:hidden">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>                       
+                        <a id="btnSearch" href="#" class="Google"><center><h2>Connect</h2></center></a>
+                    </div>
+                    <div id="chatBody" style="visibility:hidden">
+                        <div id="header"></div>
+                        <div id="inputForm">                                                      
+                            <input type="text" id="message" placeholder="сообщение" />
+                            <input type="button" id="sendmessage" value="Отправить" />
+                        </div>
+                        <div id="chatroom"></div>
+                        <hr>
+                        <div id="chatusers">
+                            <p><b>Все пользователи</b></p>
+                        </div>
+                        <video autoplay></video>                        
+</div>
+                    <div id="map" style="width:100%;height:400px;"></div>
+                    <input id="hdId" type="hidden" />
+                    <input id="username" type="hidden" />
+                    <input id="InterlocutorsId" type="hidden">
+                </div>
+            </center>
+            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+            <!--Ссылка на библиотеку SignalR -->
+            <script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
+            <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
+            <script src="~/signalr/hubs"></script>
+            <script src="~/Scripts/util.js"></script>
+    <script src="~/Scripts/WebRTC.js"></script>
+    <script src="~/Scripts/adapter.js"></script>
+    <script src="~/Scripts/Locator.js"></script>
+</body>
+</html>
