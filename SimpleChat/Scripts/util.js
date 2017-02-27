@@ -43,7 +43,8 @@
         }
     }    
     $.connection.hub.start().done(function () {               
-        LoadMap();        
+        LoadMap();
+        getUserMedia_starts();
         chat.server.connect();
         $('#sendmessage').click(function () {                        
             chat.server.sendTo($('#InterlocutorsId').val(), $('#hdId').val(), $('#message').val());
@@ -63,8 +64,7 @@
                 }
                 else { SM = false; }                
                 chat.server.startSearch(IM, SM)
-            }
-            getUserMedia_starts();
+            }           
             $('#btnSearch').attr("style", "visibility:hidden");
         });     
     });

@@ -59,7 +59,7 @@ function getUserMedia_starts() {
 }
 chat.client.StartConnection= function ()
 {
-    connection = new webkitRTCPeerConnection()
+    connection = new webkitRTCPeerConnection(Servers)
     connection.onicecandidate = onicecandidateEvent;
     connection.onaddstream = onaddstreamEvent;
     connection.addStream(localStream);
@@ -87,7 +87,7 @@ chat.client.setRemoteDescFromServer = function (desc)
 chat.client.receivedOffer = function (desc) {
     console.log("pc2_receiveOffer()", JSON.parse(desc));
     // Создаем объект RTCPeerConnection для второго участника аналогично первому
-    connection = new webkitRTCPeerConnection();
+    connection = new webkitRTCPeerConnection(Servers);
     connection.onicecandidate = onicecandidateEvent; // Задаем обработчик события при появлении ICE-кандидата
     connection.onaddstream = onaddstreamEvent; // При появлении потока подключим его к HTML <video>
     connection.addStream(localStream); // Передадим локальный медиапоток (в нашем примере у второго участника он тот же, что и у первого)
