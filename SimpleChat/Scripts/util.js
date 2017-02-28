@@ -63,7 +63,7 @@
                     SM = true;
                 }
                 else { SM = false; }                
-                chat.server.startSearch(IM, SM)
+                chat.server.startSearch(IM, SM, $('#latitude').attr("value"), $('#longitude').attr("value"))
             }           
             $('#btnSearch').attr("style", "visibility:hidden");
         });     

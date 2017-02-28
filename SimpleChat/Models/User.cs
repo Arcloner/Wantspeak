@@ -9,8 +9,8 @@ namespace SimpleChat.Models
     {
         public string ConnectionId { get; set; }  
         public bool IM { get; set; }
-        public bool SM { get; set; }
-        //public enum Gender { female, male };
-        //public Gender sex { get; set; }
+        public bool SM { get; set; }        
+        public double lat { get; set; }
+        public double lon { get; set; }
     }
 }

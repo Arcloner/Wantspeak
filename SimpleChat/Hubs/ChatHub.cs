@@ -42,9 +42,21 @@ namespace SimpleChat.Hubs
             }
             return base.OnDisconnected(stopCalled);
         }
-        public void StartSearch(bool IM,bool SM)
+        public void StartSearch(bool IM,bool SM,string lat, string lon)
         {
-            Binder.AddUserInSearch(Context.ConnectionId,IM,SM);
+            string x=lat.Replace(".", ",");
+            string y=lon.Replace(".", ",");
+            int subi = 0;
+        Correct:           
+            try
+            {
+                Binder.AddUserInSearch(Context.ConnectionId, IM, SM, Convert.ToDouble(x.Substring(0, x.Length - subi)), Convert.ToDouble(y.Substring(0, y.Length - subi)));
+            }
+            catch (FormatException)
+            {
+                subi++;
+                goto Correct;
+            }
         }
         public void OnIceCandidate(string RemoteId,string candidate)
         {

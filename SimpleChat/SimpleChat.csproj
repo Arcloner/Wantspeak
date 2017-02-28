@@ -236,7 +236,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\Wantspeak - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -50,42 +50,43 @@ namespace SimpleChat.Models
                 RangeExeption:       
                 for (int i = 0; i < UsersInSearch.Count; i++)
                 {
+                    double MinDistance=-1;
+                    string firstId=null;
+                    string secondId=null;
                     for (int z = 0; z < UsersInSearch.Count; z++)
-                    {
+                    {                      
                     Found:
                         try
                         {
                             if (UsersInSearch[i].SM == UsersInSearch[z].IM && UsersInSearch[z].SM == UsersInSearch[i].IM && UsersInSearch[i] != UsersInSearch[z])
                             {
-                                string firstId;
-                                string secondId;
-                                try
+                                double distance = Math.Sqrt(Math.Pow(UsersInSearch[i].lat - UsersInSearch[z].lat, 2) + Math.Pow(UsersInSearch[i].lon - UsersInSearch[z].lon, 2));
+                                if (MinDistance == -1||distance<MinDistance)
                                 {
+                                    MinDistance = distance;
                                     firstId = UsersInSearch[i].ConnectionId;
                                     secondId = UsersInSearch[z].ConnectionId;
                                 }
-                                catch (NullReferenceException)
+                                if (z == UsersInSearch.Count-1)
                                 {
-                                    firstId = UsersInSearch[i].ConnectionId;
-                                    secondId = UsersInSearch[z].ConnectionId;
+                                    hub.Clients.Client(firstId).setInterlocutorId(secondId);
+                                    hub.Clients.Client(secondId).setInterlocutorId(firstId);
+                                    hub.Clients.Client(firstId).showChat();
+                                    hub.Clients.Client(secondId).showChat();
+                                    hub.Clients.Client(firstId).StartConnection();
+                                    if (i > z)
+                                    {
+                                        UsersInSearch.Remove(UsersInSearch[i]);
+                                        UsersInSearch.Remove(UsersInSearch[z]);
+                                    }
+                                    else
+                                    {
+                                        UsersInSearch.Remove(UsersInSearch[z]);
+                                        UsersInSearch.Remove(UsersInSearch[i]);
+                                    }
+                                    find = true;
+                                    break;
                                 }
-                                hub.Clients.Client(firstId).setInterlocutorId(secondId);
-                                hub.Clients.Client(secondId).setInterlocutorId(firstId);
-                                hub.Clients.Client(firstId).showChat();                               
-                                hub.Clients.Client(secondId).showChat();
-                                hub.Clients.Client(firstId).StartConnection();
-                                if (i > z)
-                                {
-                                    UsersInSearch.Remove(UsersInSearch[i]);
-                                    UsersInSearch.Remove(UsersInSearch[z]);
-                                }
-                                else
-                                {
-                                    UsersInSearch.Remove(UsersInSearch[z]);
-                                    UsersInSearch.Remove(UsersInSearch[i]);
-                                }
-                                find = true;
-                                break;
                             }
                         }
                         catch (NullReferenceException)
@@ -104,9 +105,9 @@ namespace SimpleChat.Models
                 }
             }
         }
-        public static void AddUserInSearch(string id,bool IM,bool SM)
+        public static void AddUserInSearch(string id,bool IM,bool SM,double lat,double lon)
         {
-            UsersInSearch.Add(new User { ConnectionId = id ,IM=IM,SM=SM });
+            UsersInSearch.Add(new User { ConnectionId = id ,IM=IM,SM=SM,lat=lat,lon=lon});
         }
         public static void DeleteUserInSearch(string Id)
         {
