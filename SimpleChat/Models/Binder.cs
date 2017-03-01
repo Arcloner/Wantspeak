@@ -14,89 +14,51 @@ namespace SimpleChat.Models
         public Binder(IHubContext hub)
         {
             this.hub = hub;
-        }
-        public void SimpleBindUsers()
-        {
-            while (true)
-            {
-                if (UsersInSearch.Count >= 2)
-                {
-                    string firstId;
-                    string secondId;
-                    try
-                    {
-                        firstId = UsersInSearch[0].ConnectionId;
-                        secondId = UsersInSearch[1].ConnectionId;
-                    }
-                    catch (NullReferenceException)
-                    {
-                        firstId = UsersInSearch[0].ConnectionId;
-                        secondId = UsersInSearch[1].ConnectionId;
-                    }
-                    hub.Clients.Client(firstId).setInterlocutorId(secondId);
-                    hub.Clients.Client(secondId).setInterlocutorId(firstId);
-                    hub.Clients.Client(firstId).showChat();
-                    hub.Clients.Client(secondId).showChat();
-                    UsersInSearch.Remove(UsersInSearch[1]);
-                    UsersInSearch.Remove(UsersInSearch[0]);                  
-                }
-            }
-        }
+        }        
         public void BindUsers()
-        {
+        {            
             while (true)
             {
-                bool find = false;    
-                RangeExeption:       
-                for (int i = 0; i < UsersInSearch.Count; i++)
+                List<User> LocalUsersInSearch = new List<User>();
+                LocalUsersInSearch = UsersInSearch.GetRange(0, UsersInSearch.Count);
+                bool find = false;                    
+                for (int i = 0; i < LocalUsersInSearch.Count; i++)
                 {
                     double MinDistance=-1;
                     string firstId=null;
                     string secondId=null;
-                    for (int z = 0; z < UsersInSearch.Count; z++)
-                    {                      
-                    Found:
-                        try
+                    for (int z = 0; z < LocalUsersInSearch.Count; z++)
+                    {
+                        if (LocalUsersInSearch[i].SM == LocalUsersInSearch[z].IM && LocalUsersInSearch[z].SM == LocalUsersInSearch[i].IM && LocalUsersInSearch[i] != LocalUsersInSearch[z])
                         {
-                            if (UsersInSearch[i].SM == UsersInSearch[z].IM && UsersInSearch[z].SM == UsersInSearch[i].IM && UsersInSearch[i] != UsersInSearch[z])
+                            double distance = Math.Sqrt(Math.Pow(LocalUsersInSearch[i].lat - LocalUsersInSearch[z].lat, 2) + Math.Pow(LocalUsersInSearch[i].lon - LocalUsersInSearch[z].lon, 2));
+                            if (MinDistance == -1 || distance < MinDistance)
                             {
-                                double distance = Math.Sqrt(Math.Pow(UsersInSearch[i].lat - UsersInSearch[z].lat, 2) + Math.Pow(UsersInSearch[i].lon - UsersInSearch[z].lon, 2));
-                                if (MinDistance == -1||distance<MinDistance)
-                                {
-                                    MinDistance = distance;
-                                    firstId = UsersInSearch[i].ConnectionId;
-                                    secondId = UsersInSearch[z].ConnectionId;
-                                }
-                                if (z == UsersInSearch.Count-1)
-                                {
-                                    hub.Clients.Client(firstId).setInterlocutorId(secondId);
-                                    hub.Clients.Client(secondId).setInterlocutorId(firstId);
-                                    hub.Clients.Client(firstId).showChat();
-                                    hub.Clients.Client(secondId).showChat();
-                                    hub.Clients.Client(firstId).StartConnection();
-                                    if (i > z)
-                                    {
-                                        UsersInSearch.Remove(UsersInSearch[i]);
-                                        UsersInSearch.Remove(UsersInSearch[z]);
-                                    }
-                                    else
-                                    {
-                                        UsersInSearch.Remove(UsersInSearch[z]);
-                                        UsersInSearch.Remove(UsersInSearch[i]);
-                                    }
-                                    find = true;
-                                    break;
-                                }
+                                MinDistance = distance;
+                                firstId = LocalUsersInSearch[i].ConnectionId;
+                                secondId = LocalUsersInSearch[z].ConnectionId;
                             }
-                        }
-                        catch (NullReferenceException)
-                        {
-                            goto Found;
-                        }
-                        catch (ArgumentOutOfRangeException)
-                        {
-                            goto RangeExeption;
-                        }
+                            if (z == LocalUsersInSearch.Count - 1)
+                            {
+                                hub.Clients.Client(firstId).setInterlocutorId(secondId);
+                                hub.Clients.Client(secondId).setInterlocutorId(firstId);
+                                hub.Clients.Client(firstId).showChat();
+                                hub.Clients.Client(secondId).showChat();
+                                hub.Clients.Client(firstId).StartConnection();
+                                if (i > z)
+                                {
+                                    UsersInSearch.Remove(UsersInSearch[i]);
+                                    UsersInSearch.Remove(UsersInSearch[z]);
+                                }
+                                else
+                                {
+                                    UsersInSearch.Remove(UsersInSearch[z]);
+                                    UsersInSearch.Remove(UsersInSearch[i]);
+                                }
+                                find = true;
+                                break;
+                            }
+                        }                       
                     }
                     if (find == true)
                     {
