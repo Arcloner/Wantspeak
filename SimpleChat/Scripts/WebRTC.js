@@ -40,26 +40,25 @@ function getUserMedia_error(error) {
     console.log("getUserMedia_error():", error);
 }
 function getUserMedia_starts() {
-    console.log("getUserMedia_starts");   
-        //navigator.mediaDevices.getUserMedia(streamConstraints).then(function (stream) {
-        //    getUserMedia_success(stream);
-        //}).catch(function (err) {
-        //    getUserMedia_error(err);
-    //});  
+    console.log("getUserMedia_starts");             
     navigator.getUserMedia = (navigator.getUserMedia ||
                        navigator.webkitGetUserMedia ||
                        navigator.mozGetUserMedia ||
-                       navigator.msGetUserMedia);
-        navigator.getUserMedia(
-          streamConstraints,
-          getUserMedia_success,
-          getUserMedia_error
-        );
-    
+                       navigator.msGetUserMedia || navigator.mediaDevices.getUserMedia);
+    navigator.mediaDevices.getUserMedia(streamConstraints).then(function (stream) {
+        getUserMedia_success(stream);
+    }).catch(function (err) {
+        getUserMedia_error(err);
+    });
+        //navigator.getUserMedia(
+        //  streamConstraints,
+        //  getUserMedia_success,
+        //  getUserMedia_error
+        //);    
 }
 chat.client.StartConnection= function ()
 {
-    connection = new webkitRTCPeerConnection(Servers)
+    connection = new RTCPeerConnection(Servers)
     connection.onicecandidate = onicecandidateEvent;
     connection.onaddstream = onaddstreamEvent;
     connection.addStream(localStream);
@@ -87,13 +86,13 @@ chat.client.setRemoteDescFromServer = function (desc)
 chat.client.receivedOffer = function (desc) {
     console.log("pc2_receiveOffer()", JSON.parse(desc));
     // Создаем объект RTCPeerConnection для второго участника аналогично первому
-    connection = new webkitRTCPeerConnection(Servers);
+    connection = new RTCPeerConnection(Servers);
     connection.onicecandidate = onicecandidateEvent; // Задаем обработчик события при появлении ICE-кандидата
     connection.onaddstream = onaddstreamEvent; // При появлении потока подключим его к HTML <video>
     connection.addStream(localStream); // Передадим локальный медиапоток (в нашем примере у второго участника он тот же, что и у первого)
     // Теперь, когда второй RTCPeerConnection готов, передадим ему полученный Offer SDP (первому мы передавали локальный поток)
     connection.setRemoteDescription(new RTCSessionDescription(JSON.parse(desc)));
-    // Запросим у второго соединения формирование данных для сообщения Answer
+    // Запросим у второго соединения формирование данных для сообщения Answer      
     connection.createAnswer(
       createAnswer_success,
       createAnswer_error,

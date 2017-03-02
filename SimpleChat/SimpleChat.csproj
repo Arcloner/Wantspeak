@@ -237,8 +237,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\Wantspeak - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - FTP %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - FTP %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - FTP %285%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - FTP %286%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %285%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %286%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -255,6 +263,28 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\util.js" />
+    <Content Include="Scripts\webrtc-adapter\Gruntfile.js" />
+    <Content Include="Scripts\webrtc-adapter\out\adapter.js" />
+    <Content Include="Scripts\webrtc-adapter\out\adapter_no_edge.js" />
+    <Content Include="Scripts\webrtc-adapter\out\adapter_no_edge_no_global.js" />
+    <Content Include="Scripts\webrtc-adapter\out\adapter_no_global.js" />
+    <Content Include="Scripts\webrtc-adapter\src\js\adapter_core.js" />
+    <Content Include="Scripts\webrtc-adapter\src\js\chrome\chrome_shim.js" />
+    <Content Include="Scripts\webrtc-adapter\src\js\chrome\getusermedia.js" />
+    <Content Include="Scripts\webrtc-adapter\src\js\edge\edge_shim.js" />
+    <Content Include="Scripts\webrtc-adapter\src\js\edge\getusermedia.js" />
+    <Content Include="Scripts\webrtc-adapter\src\js\firefox\firefox_shim.js" />
+    <Content Include="Scripts\webrtc-adapter\src\js\firefox\getusermedia.js" />
+    <Content Include="Scripts\webrtc-adapter\src\js\safari\safari_shim.js" />
+    <Content Include="Scripts\webrtc-adapter\src\js\utils.js" />
+    <Content Include="Scripts\webrtc-adapter\test\run-tests.js" />
+    <Content Include="Scripts\webrtc-adapter\test\selenium-lib.js" />
+    <Content Include="Scripts\webrtc-adapter\test\test.js" />
+    <Content Include="Scripts\webrtc-adapter\test\testpage.html" />
+    <Content Include="Scripts\webrtc-adapter\test\unit\chrome.js" />
+    <Content Include="Scripts\webrtc-adapter\test\unit\detectBrowser.js" />
+    <Content Include="Scripts\webrtc-adapter\test\unit\extractVersion.js" />
+    <Content Include="Scripts\webrtc-adapter\test\unit\firefox.js" />
     <Content Include="Scripts\WebRTC.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -293,6 +323,19 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
+    <Content Include="Scripts\webrtc-adapter\.eslintrc" />
+    <Content Include="Scripts\webrtc-adapter\.npmignore" />
+    <Content Include="Scripts\webrtc-adapter\.travis.yml" />
+    <Content Include="Scripts\webrtc-adapter\bower.json" />
+    <Content Include="Scripts\webrtc-adapter\CONTRIBUTING.md" />
+    <Content Include="Scripts\webrtc-adapter\ISSUE_TEMPLATE.md" />
+    <Content Include="Scripts\webrtc-adapter\LICENSE.md" />
+    <Content Include="Scripts\webrtc-adapter\package.json" />
+    <Content Include="Scripts\webrtc-adapter\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Scripts\webrtc-adapter\README-w3c-tests.md" />
+    <Content Include="Scripts\webrtc-adapter\README.md" />
+    <Content Include="Scripts\webrtc-adapter\test\README.md" />
+    <Content Include="Scripts\webrtc-adapter\test\unit\.eslintrc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

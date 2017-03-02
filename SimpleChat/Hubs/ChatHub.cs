@@ -43,9 +43,14 @@ namespace SimpleChat.Hubs
             return base.OnDisconnected(stopCalled);
         }
         public void StartSearch(bool IM,bool SM,string lat, string lon)
-        {
+        {            
             string x=lat.Replace(".", ",");
             string y=lon.Replace(".", ",");
+            if (lat == "" || lon == "")
+            {
+                x = "0";
+                y = "0";
+            }
             int subi = 0;
         Correct:           
             try

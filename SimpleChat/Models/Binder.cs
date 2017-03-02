@@ -67,8 +67,8 @@ namespace SimpleChat.Models
                 }
             }
         }
-        public static void AddUserInSearch(string id,bool IM,bool SM,double lat,double lon)
-        {
+        public static void AddUserInSearch(string id, bool IM, bool SM, double lat, double lon)
+        {           
             UsersInSearch.Add(new User { ConnectionId = id ,IM=IM,SM=SM,lat=lat,lon=lon});
         }
         public static void DeleteUserInSearch(string Id)

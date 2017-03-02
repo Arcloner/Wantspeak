@@ -43,7 +43,7 @@
         }
     }    
     $.connection.hub.start().done(function () {               
-        LoadMap();
+        LoadMap();          
         getUserMedia_starts();
         chat.server.connect();
         $('#sendmessage').click(function () {                        
