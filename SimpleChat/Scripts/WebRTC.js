@@ -22,7 +22,7 @@ function onicecandidateEvent(event) {
 }
 function onaddstreamEvent(event) {
     console.log("pc_onaddstream()");
-    document.querySelector('video').src = URL.createObjectURL(event.stream);
+    document.querySelector('video').srcObject = event.stream;    
 }
 function createOffer_success(desc) {
     console.log("pc1_createOffer_success(): \ndesc.sdp:\n" + desc.sdp + "desc:", desc);
@@ -41,28 +41,28 @@ function getUserMedia_error(error) {
 }
 function getUserMedia_starts() {
     console.log("getUserMedia_starts");             
-    navigator.getUserMedia = (navigator.getUserMedia ||
-                       navigator.webkitGetUserMedia ||
-                       navigator.mozGetUserMedia ||
-                       navigator.msGetUserMedia || navigator.mediaDevices.getUserMedia);
-    navigator.mediaDevices.getUserMedia(streamConstraints).then(function (stream) {
-        getUserMedia_success(stream);
-    }).catch(function (err) {
-        getUserMedia_error(err);
-    });
-        //navigator.getUserMedia(
-        //  streamConstraints,
-        //  getUserMedia_success,
-        //  getUserMedia_error
-        //);    
+    //navigator.getUserMedia = (navigator.getUserMedia ||
+    //                   navigator.webkitGetUserMedia ||
+    //                   navigator.mozGetUserMedia ||
+    //                   navigator.msGetUserMedia || navigator.mediaDevices.getUserMedia);
+    //navigator.mediaDevices.getUserMedia(streamConstraints).then(function (stream) {
+    //    getUserMedia_success(stream);
+    //}).catch(function (err) {
+    //    getUserMedia_error(err);
+    //});
+        navigator.getUserMedia(
+          streamConstraints,
+          getUserMedia_success,
+          getUserMedia_error
+        );    
 }
 chat.client.StartConnection= function ()
-{
+{    
     connection = new RTCPeerConnection(Servers)
     connection.onicecandidate = onicecandidateEvent;
     connection.onaddstream = onaddstreamEvent;
     connection.addStream(localStream);
-    connection.createOffer(            // И собственно запрашиваем формирование Offer
+    connection.createOffer(            
     createOffer_success,
     createOffer_error,
     offerConstraints

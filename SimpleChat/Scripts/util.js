@@ -42,7 +42,7 @@
             $('#message').val('');
         }
     }    
-    $.connection.hub.start().done(function () {               
+    $.connection.hub.start().done(function () {       
         LoadMap();          
         getUserMedia_starts();
         chat.server.connect();
