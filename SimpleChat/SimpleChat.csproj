@@ -230,7 +230,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\adapter.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -241,12 +240,14 @@
     <None Include="Properties\PublishProfiles\Wantspeak - FTP %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - FTP %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - FTP %286%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - FTP %287%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %286%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %287%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

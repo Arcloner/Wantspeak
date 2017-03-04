@@ -18,7 +18,23 @@ namespace SimpleChat.Hubs
         {
             Clients.Client(recipient).addMessage(sender, message);
             Clients.Client(sender).addMessage(sender, message);
-        }             
+        }
+        public void VideoCall(string recipient, string sender)
+        {
+            Clients.Client(recipient).showCallNotification();
+            Clients.Client(sender).onCall();
+        }
+        public void CallAccepted(string recipient, string sender)
+        {
+            Clients.Client(recipient).StartConnection();
+            Clients.Client(recipient).callIs(true);
+            Clients.Client(sender).callIs(true);
+        }
+        public void CallRejected(string recipient, string sender)
+        {
+            Clients.Client(recipient).callIs(false);
+            Clients.Client(sender).callIs(false);
+        }
         public void Connect()
         {
             var id = Context.ConnectionId;                        

@@ -16,6 +16,10 @@
         RemoteId = id;
         $('#ShowInterlocutorsId').text($('#ShowInterlocutorsId').text() + id);
     };
+    chat.client.StartConnection = function ()
+    {
+        StartWebRTC();
+    }
     chat.client.showChat= function()
     {
         addEventListener("keypress", SendByEnter);
@@ -23,7 +27,19 @@
         $('#Loading').attr("style", "visibility:hidden");
         $('#chatBody').attr("style", "visibility:visible");        
 
+    }   
+    chat.client.showCallNotification = function ()
+    {
+        $('#CallNotification').attr("style", "visibility:visible");
+        $('#AnswerLoading').attr("style", "visibility:hidden");
+        $('#CallButton').attr("style", "visibility:hidden");        
     }    
+    chat.client.onCall = function ()
+    {
+        $('#OnCall').attr("style", "visibility:visible");
+        $('#AnswerLoading').attr("style", "visibility:visible");
+        $('#CallButton').attr("style", "visibility:hidden");
+    }
     chat.client.onConnected = function (id, allUsers) { 
         $('#hdId').val(id);                  
         for (i = 0; i < allUsers.length; i++) {
@@ -41,15 +57,41 @@
             chat.server.sendTo($('#InterlocutorsId').val(), $('#hdId').val(), $('#message').val());
             $('#message').val('');
         }
-    }    
-    $.connection.hub.start().done(function () {       
-        LoadMap();          
+    }
+    chat.client.callIs = function (status)
+    {
+        if (status == true) {
+            $('#CallNotification').attr("style", "display:none");
+            $('#OnCall').attr("style", "display:none");
+            $('#CallButton').attr("style", "display:none");
+        }
+        else
+        {
+            $('#CallNotification').attr("style", "display:none");
+            $('#OnCall').attr("style", "display:none");
+            $('#CallButton').attr("style", "display:normal");
+            StopStream();
+        }
+    }
+    $('#Accept').click(function () {
         getUserMedia_starts();
+        $('#GetUserMediaType').attr("value", "Accept");             
+    });
+    $('#Reject').click(function () {
+        chat.server.callRejected($('#InterlocutorsId').val(), $('#hdId').val());
+    });
+    $.connection.hub.start().done(function () {       
+        LoadMap();        
         chat.server.connect();
+        $('#btnSearch').attr("style", "visibility:visible");
         $('#sendmessage').click(function () {                        
             chat.server.sendTo($('#InterlocutorsId').val(), $('#hdId').val(), $('#message').val());
                 $('#message').val('');          
-        });             
+        });
+        $('#CallButton').click(function () {
+            getUserMedia_starts();
+            $('#GetUserMediaType').attr("value", "Call");                   
+        });
         $('#btnSearch').click(function () {           
             $('#Loading').attr("style", "visibility:visible");
             if ($('#btnSearch').attr("style") != "visibility:hidden") {
@@ -63,7 +105,7 @@
                     SM = true;
                 }
                 else { SM = false; }                
-                chat.server.startSearch(IM, SM, $('#latitude').attr("value"), $('#longitude').attr("value"))
+                chat.server.startSearch(IM, SM, $('#latitude').attr("value"), $('#longitude').attr("value"))              
             }           
             $('#btnSearch').attr("style", "visibility:hidden");
         });     

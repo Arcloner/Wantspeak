@@ -10,7 +10,8 @@
 </head>
 <body>
     <input id="latitude" value="" type="hidden">
-    <input id="longitude" value="" type="hidden">   
+    <input id="longitude" value="" type="hidden">
+    <input id="GetUserMediaType" value="" type="hidden">   
     <label id="ShowMyId" style="margin-left:0px">
         Мой Id :</label ><br>
         <label id="ShowInterlocutorsId" style="margin-left:0px">
@@ -40,21 +41,39 @@
                             <div class="rect4"></div>
                             <div class="rect5"></div>
                         </div>                       
-                        <a id="btnSearch" href="#" class="Google"><center><h2>Connect</h2></center></a>
+                        <a id="btnSearch" style="visibility:hidden" href="#" class="Google"><center><h2>Искать</h2></center></a>
                     </div>
                     <div id="chatBody" style="visibility:hidden">
+                        <center><video id="VideoStream" style="display:none" autoplay></video> </center>
                         <div id="header"></div>
+                        <center>
                         <div id="inputForm">                                                      
                             <input type="text" id="message" placeholder="сообщение" />
                             <input type="button" id="sendmessage" value="Отправить" />
                         </div>
                         <div id="chatroom"></div>
+                            </center>
                         <hr>
                         <div id="chatusers">
                             <p><b>Все пользователи</b></p>
                         </div>
-                        <video autoplay></video>                        
-</div>
+                        <div id="CallNotification" style="visibility:hidden">
+                            Собеседник вас вызывает ...
+                            <a id="Accept"style="color:greenyellow;margin-left:50%" href="#" class="Google"><center><h2>Принять</h2></center></a>
+                            <a id="Reject" style="color:red;margin-right:50%" href="#" class="Google"><center><h2>Отклонить</h2></center></a>
+                            </div>
+                        <div id="OnCall" style="visibility:hidden">
+                            Ожидаем ответа ...
+                            <div id="AnswerLoading" class="spinner" style="visibility:hidden">
+                                <div class="rect1"></div>
+                                <div class="rect2"></div>
+                                <div class="rect3"></div>
+                                <div class="rect4"></div>
+                                <div class="rect5"></div>
+                            </div>
+                            </div>
+                        <a id="CallButton" href="#" class="Google"><center><h2>Позвонить собеседнику</h2></center></a>                                              
+                        </div>
                     <div id="map" style="width:100%;height:400px;"></div>
                     <input id="hdId" type="hidden" />
                     <input id="username" type="hidden" />

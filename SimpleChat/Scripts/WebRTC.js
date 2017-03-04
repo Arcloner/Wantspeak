@@ -17,12 +17,17 @@ function onicecandidateEvent(event) {
     if (event.candidate) {
         console.log("pc1_onicecandidate():\n" + event.candidate.candidate.replace("\r\n", ""), event.candidate);       
         chat.server.onIceCandidate(RemoteId,JSON.stringify(event.candidate))
-
     }
 }
 function onaddstreamEvent(event) {
     console.log("pc_onaddstream()");
     document.querySelector('video').srcObject = event.stream;    
+    $('#VideoStream').attr("style", "display:normal");
+    document.querySelector('video').play();
+}
+function StopStream()
+{
+    localStream.getVideoTracks()[0].stop();
 }
 function createOffer_success(desc) {
     console.log("pc1_createOffer_success(): \ndesc.sdp:\n" + desc.sdp + "desc:", desc);
@@ -34,29 +39,28 @@ function createOffer_error(error) {
 }
 function getUserMedia_success(stream) {
     console.log("getUserMedia_success():", stream);    
-    localStream = stream; 
+    localStream = stream;
+    if ($('#GetUserMediaType').attr("value") == "Accept")
+    {
+        chat.server.callAccepted($('#InterlocutorsId').val(), $('#hdId').val());
+    }
+    if ($('#GetUserMediaType').attr("value") == "Call")
+    {
+        chat.server.videoCall($('#InterlocutorsId').val(), $('#hdId').val());
+    }
 }
 function getUserMedia_error(error) {
     console.log("getUserMedia_error():", error);
 }
 function getUserMedia_starts() {
-    console.log("getUserMedia_starts");             
-    //navigator.getUserMedia = (navigator.getUserMedia ||
-    //                   navigator.webkitGetUserMedia ||
-    //                   navigator.mozGetUserMedia ||
-    //                   navigator.msGetUserMedia || navigator.mediaDevices.getUserMedia);
-    //navigator.mediaDevices.getUserMedia(streamConstraints).then(function (stream) {
-    //    getUserMedia_success(stream);
-    //}).catch(function (err) {
-    //    getUserMedia_error(err);
-    //});
+    console.log("getUserMedia_starts");                
         navigator.getUserMedia(
           streamConstraints,
           getUserMedia_success,
           getUserMedia_error
         );    
 }
-chat.client.StartConnection= function ()
+function StartWebRTC ()
 {    
     connection = new RTCPeerConnection(Servers)
     connection.onicecandidate = onicecandidateEvent;
@@ -84,15 +88,12 @@ chat.client.setRemoteDescFromServer = function (desc)
     connection.setRemoteDescription(JSON.parse(desc));
 }
 chat.client.receivedOffer = function (desc) {
-    console.log("pc2_receiveOffer()", JSON.parse(desc));
-    // Создаем объект RTCPeerConnection для второго участника аналогично первому
+    console.log("pc2_receiveOffer()", JSON.parse(desc));    
     connection = new RTCPeerConnection(Servers);
-    connection.onicecandidate = onicecandidateEvent; // Задаем обработчик события при появлении ICE-кандидата
-    connection.onaddstream = onaddstreamEvent; // При появлении потока подключим его к HTML <video>
-    connection.addStream(localStream); // Передадим локальный медиапоток (в нашем примере у второго участника он тот же, что и у первого)
-    // Теперь, когда второй RTCPeerConnection готов, передадим ему полученный Offer SDP (первому мы передавали локальный поток)
-    connection.setRemoteDescription(new RTCSessionDescription(JSON.parse(desc)));
-    // Запросим у второго соединения формирование данных для сообщения Answer      
+    connection.onicecandidate = onicecandidateEvent; 
+    connection.onaddstream = onaddstreamEvent; 
+    connection.addStream(localStream);     
+    connection.setRemoteDescription(new RTCSessionDescription(JSON.parse(desc)));        
     connection.createAnswer(
       createAnswer_success,
       createAnswer_error,
