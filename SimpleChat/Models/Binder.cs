@@ -46,8 +46,7 @@ namespace SimpleChat.Models
                                     hub.Clients.Client(firstId).setInterlocutorId(secondId);
                                     hub.Clients.Client(secondId).setInterlocutorId(firstId);
                                     hub.Clients.Client(firstId).showChat();
-                                    hub.Clients.Client(secondId).showChat();
-                                    //hub.Clients.Client(firstId).StartConnection();
+                                    hub.Clients.Client(secondId).showChat();                                    
                                     if (i > z)
                                     {
                                         UsersInSearch.Remove(UsersInSearch[i]);

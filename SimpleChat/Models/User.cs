@@ -12,5 +12,6 @@ namespace SimpleChat.Models
         public bool SM { get; set; }        
         public double lat { get; set; }
         public double lon { get; set; }
+        public string Topic { get; set; }
     }
 }
