@@ -58,7 +58,7 @@ namespace SimpleChat.Hubs
             }
             return base.OnDisconnected(stopCalled);
         }
-        public void StartSearch(bool IM,bool SM,string lat, string lon)
+        public void StartSearch(bool IM,bool SM,string lat, string lon,string Topic)
         {            
             string x=lat.Replace(".", ",");
             string y=lon.Replace(".", ",");
@@ -71,7 +71,7 @@ namespace SimpleChat.Hubs
         Correct:           
             try
             {
-                Binder.AddUserInSearch(Context.ConnectionId, IM, SM, Convert.ToDouble(x.Substring(0, x.Length - subi)), Convert.ToDouble(y.Substring(0, y.Length - subi)));
+                Binder.AddUserInSearch(Context.ConnectionId, IM, SM, Convert.ToDouble(x.Substring(0, x.Length - subi)), Convert.ToDouble(y.Substring(0, y.Length - subi)),Topic);
             }
             catch (FormatException)
             {

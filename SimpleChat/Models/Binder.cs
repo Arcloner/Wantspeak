@@ -32,7 +32,7 @@ namespace SimpleChat.Models
                         FromNullExeption:
                         try
                         {
-                            if (LocalUsersInSearch[i].SM == LocalUsersInSearch[z].IM && LocalUsersInSearch[z].SM == LocalUsersInSearch[i].IM && LocalUsersInSearch[i] != LocalUsersInSearch[z])
+                            if (LocalUsersInSearch[i].SM == LocalUsersInSearch[z].IM && LocalUsersInSearch[z].SM == LocalUsersInSearch[i].IM && LocalUsersInSearch[i] != LocalUsersInSearch[z]&&LocalUsersInSearch[i].Topic==LocalUsersInSearch[z].Topic)
                             {
                                 double distance = Math.Sqrt(Math.Pow(LocalUsersInSearch[i].lat - LocalUsersInSearch[z].lat, 2) + Math.Pow(LocalUsersInSearch[i].lon - LocalUsersInSearch[z].lon, 2));
                                 if (MinDistance == -1 || distance < MinDistance)
@@ -75,9 +75,9 @@ namespace SimpleChat.Models
                 }
             }
         }
-        public static void AddUserInSearch(string id, bool IM, bool SM, double lat, double lon)
+        public static void AddUserInSearch(string id, bool IM, bool SM, double lat, double lon,string Topic)
         {           
-            UsersInSearch.Add(new User { ConnectionId = id ,IM=IM,SM=SM,lat=lat,lon=lon});
+            UsersInSearch.Add(new User { ConnectionId = id ,IM=IM,SM=SM,lat=lat,lon=lon,Topic=Topic});
         }
         public static void DeleteUserInSearch(string Id)
         {

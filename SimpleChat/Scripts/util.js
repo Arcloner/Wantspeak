@@ -92,7 +92,16 @@
             getUserMedia_starts();
             $('#GetUserMediaType').attr("value", "Call");                   
         });
-        $('#btnSearch').click(function () {           
+        $('#btnSearch').click(function () {
+            var TopicsForm = document.forms.TopicsForm;
+            var ChosenTopic;
+            var Topics = TopicsForm.elements['Topics[]'];
+            for (var i = 0; i < Topics.length; i++) {
+                if ($('#'+Topics[i].id).prop('checked'))
+                {
+                    ChosenTopic = Topics[i].id;
+                }
+            }
             $('#Loading').attr("style", "visibility:visible");
             if ($('#btnSearch').attr("style") != "visibility:hidden") {
                 var IM;
@@ -105,7 +114,7 @@
                     SM = true;
                 }
                 else { SM = false; }                
-                chat.server.startSearch(IM, SM, $('#latitude').attr("value"), $('#longitude').attr("value"))              
+                chat.server.startSearch(IM, SM, $('#latitude').attr("value"), $('#longitude').attr("value"),ChosenTopic)              
             }           
             $('#btnSearch').attr("style", "visibility:hidden");
         });     

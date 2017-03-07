@@ -242,6 +242,7 @@
     <None Include="Properties\PublishProfiles\Wantspeak - FTP %286%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - FTP %287%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - FTP %288%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - FTP %289%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %283%29.pubxml" />
@@ -250,6 +251,7 @@
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %286%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %287%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %288%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy %289%29.pubxml" />
     <None Include="Properties\PublishProfiles\Wantspeak - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
