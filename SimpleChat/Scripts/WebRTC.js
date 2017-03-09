@@ -1,6 +1,8 @@
 ﻿var chat = $.connection.chatHub;
 var localStream = null;
-var streamConstraints = { "audio": true, "video": true };
+var streamConstraints = {
+    "audio": true, "video": { width: 768, height: 432 }
+};
 var offerConstraints = {};
 var  Servers = {
     "iceServers": [

@@ -5,6 +5,8 @@
     chat.client.addMessage = function (name, message) {        
         $('#chatroom').append('<p><b>' + htmlEncode(name)
             + '</b>: ' + htmlEncode(message) + '</p>');
+        var height = document.getElementById('chatroom').scrollHeight;
+        $("#chatroom").animate({"scrollTop":height},"fast");
     };
     chat.client.setId = function (id) {
         SetMyIdCookies(id);
@@ -145,3 +147,10 @@ function getCookie(name) {
     ));
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
+function setChatroomHeight() {
+    $('#chatroom').css({
+        height: $(window).height()*0.4 + 'px'
+    });
+}
+setChatroomHeight(); // устанавливаем высоту окна при первой загрузке страницы
+$(window).resize(setChatroomHeight);
