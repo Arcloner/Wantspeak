@@ -13,6 +13,7 @@
     <input id="latitude" value="" type="hidden">
     <input id="longitude" value="" type="hidden">
     <input id="GetUserMediaType" value="" type="hidden">   
+    <div style="position:absolute">
     <label id="ShowMyId" style="margin-left:0px">
         Мой Id :</label ><br>
         <label id="ShowInterlocutorsId" style="margin-left:0px">
@@ -23,6 +24,7 @@
     <label id="ShowLongitude" style="margin-left:0px">
         lon:
     </label>
+        </div>    
             <center>
                 <h2>Wantspeak</h2>                
                 </center>
@@ -85,7 +87,8 @@
                         <a id="btnSearch" style="visibility:hidden" href="#" class="Google"><center><h2>Искать</h2></center></a>
                     </div>
                     <div id="chatBody" style="visibility:hidden">
-                        <center><video id="VideoStream" height="432" width="768" style="display:none" autoplay></video> </center>
+                        <a id="DisconnectFromTalk" onclick="BackToSelect()" style="display:normal;margin-top:0px" href="#" class="DisconnectFromTalk"><h2>Отключиться</h2></a>
+                        <center id="Video"><p id="DisconnectClick"><img id="Disconnect" onclick="DisconnectClick()" style="display:none;position:fixed;z-index:10" src="~/Content/IMGs/Disconnectt.jpg"><video id="VideoStream" style="display:none" autoplay></video></p> </center>
                         <div id="header"></div>
                         <center>
                         <div id="inputForm">                                                      
@@ -95,7 +98,7 @@
                         <div id="chatroom" class="ChatRoom"></div>
                             </center>
                         <hr>
-                        <div id="chatusers">
+                        <div id="chatusers" style="display:none">
                             <p><b>Все пользователи</b></p>
                         </div>
                         <div id="CallNotification" style="visibility:hidden">

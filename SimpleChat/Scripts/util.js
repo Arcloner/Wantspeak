@@ -22,14 +22,21 @@
     {
         StartWebRTC();
     }
+    chat.client.AnotherDisconnect = function ()
+    {
+        $('#loginBlock').show();
+        $('#chatBody').attr("style", "visibility:hidden");
+        $('#btnSearch').attr("style", "visibility:visible");        
+        $('#ShowInterlocutorsId').text("Связан с :");
+        document.getElementById('chatroom').innerHTML = '';
+    }
     chat.client.showChat= function()
     {
         addEventListener("keypress", SendByEnter);
         $('#loginBlock').hide();
         $('#Loading').attr("style", "visibility:hidden");
-        $('#chatBody').attr("style", "visibility:visible");        
-
-    }   
+        $('#chatBody').attr("style", "visibility:visible");
+    }    
     chat.client.showCallNotification = function ()
     {
         $('#CallNotification').attr("style", "visibility:visible");
@@ -75,9 +82,19 @@
             StopStream();
         }
     }
+    chat.client.DisconnectCall = function ()
+    {
+        StopStream();
+        document.querySelector('video').srcObject = null;
+        $('#Video').attr("style", "display:none");
+        $('#CallButton').attr("style", "display:normal");
+    }
     $('#Accept').click(function () {
         getUserMedia_starts();
         $('#GetUserMediaType').attr("value", "Accept");             
+    });
+    $('#Disconnect').click(function () {
+        chat.server.disconnect($('#InterlocutorsId').val(), $('#hdId').val());
     });
     $('#Reject').click(function () {
         chat.server.callRejected($('#InterlocutorsId').val(), $('#hdId').val());
@@ -149,8 +166,21 @@ function getCookie(name) {
 }
 function setChatroomHeight() {
     $('#chatroom').css({
-        height: $(window).height()*0.4 + 'px'
+        height: $(window).height()*0.3 + 'px'
     });
 }
 setChatroomHeight(); // устанавливаем высоту окна при первой загрузке страницы
 $(window).resize(setChatroomHeight);
+function DisconnectClick()
+{
+    chat.server.disconnect($('#InterlocutorsId').val(), $('#hdId').val());
+}
+
+ function BackToSelect() {
+    $('#loginBlock').show();
+    $('#chatBody').attr("style", "visibility:hidden");
+    $('#btnSearch').attr("style", "visibility:visible");
+    chat.server.sendAnotherDisconnect($('#InterlocutorsId').val());    
+    $('#ShowInterlocutorsId').text("Связан с :");
+    document.getElementById('chatroom').innerHTML = '';
+}

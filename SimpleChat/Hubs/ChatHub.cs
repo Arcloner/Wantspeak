@@ -35,6 +35,11 @@ namespace SimpleChat.Hubs
             Clients.Client(recipient).callIs(false);
             Clients.Client(sender).callIs(false);
         }
+        public void Disconnect(string recipient, string sender)
+        {
+            Clients.Client(recipient).DisconnectCall();
+            Clients.Client(sender).DisconnectCall();
+        }
         public void Connect()
         {
             var id = Context.ConnectionId;                        
@@ -90,6 +95,10 @@ namespace SimpleChat.Hubs
         public void SetRemoteDesc(string RemoteId,string desc)
         {
             Clients.Client(RemoteId).setRemoteDescFromServer(desc);
+        }
+        public void sendAnotherDisconnect(string recipient)
+        {
+            Clients.Client(recipient).AnotherDisconnect();
         }
     }
 }

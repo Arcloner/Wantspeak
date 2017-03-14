@@ -23,8 +23,11 @@ function onicecandidateEvent(event) {
 }
 function onaddstreamEvent(event) {
     console.log("pc_onaddstream()");
-    document.querySelector('video').srcObject = event.stream;    
+    document.querySelector('video').srcObject = event.stream;
+    $('#Video').attr("style", "display:normal");
     $('#VideoStream').attr("style", "display:normal");
+    $('#Disconnect').attr("style", "display:normal");
+    setVideoSize();
     document.querySelector('video').play();
 }
 function StopStream()
@@ -102,5 +105,17 @@ chat.client.receivedOffer = function (desc) {
       answerConstraints
     );
 }
-
+function setVideoSize() {
+    $('#VideoStream').css({
+    "width":$(window).width*0.6+'px',
+    "height": $(window).height() * 0.4 + 'px',    
+    "z-index":"5"
+    });
+    $('#Disconnect').css({              
+        "position": "absolute",
+        "margin-left": $('#VideoStream').width()+"px",
+        "z-index": "5"
+    });
+}
+$(window).resize(setVideoSize);
 

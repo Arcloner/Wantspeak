@@ -23,5 +23,7 @@ textarea {
     max-width: 280px;
 }
 div.ChatRoom {
-    overflow:scroll;    
+    overflow:scroll;
+    overflow-x:hidden;    
+    width:50%;    
 }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChat", "SimpleChat\SimpleChat.csproj", "{079871B0-483B-4F72-A91E-5D2F5D4277EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wantspeak", "SimpleChat\Wantspeak.csproj", "{079871B0-483B-4F72-A91E-5D2F5D4277EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
