@@ -51,7 +51,10 @@ namespace SimpleChat.Controllers
         {
             return View();
         }
-
+        public ActionResult TestChatDesign()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";            

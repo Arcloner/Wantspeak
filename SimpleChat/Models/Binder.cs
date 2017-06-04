@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNet.SignalR;
+using SimpleChat.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 
@@ -16,9 +18,14 @@ namespace SimpleChat.Models
             this.hub = hub;
         }        
         public void BindUsers()
-        {            
-            while (true)
+        {
+            bool circle = true;            
+            while (circle==true)
             {
+                if (UsersInSearch.Count == 0)
+                {
+                    circle=false;                    
+                }
                 List<User> LocalUsersInSearch = new List<User>();
                 LocalUsersInSearch = UsersInSearch.GetRange(0, UsersInSearch.Count);
                 bool find = false;                    
@@ -56,7 +63,7 @@ namespace SimpleChat.Models
                                     {
                                         UsersInSearch.Remove(UsersInSearch[z]);
                                         UsersInSearch.Remove(UsersInSearch[i]);
-                                    }
+                                    }                                    
                                     find = true;
                                     break;
                                 }
@@ -69,15 +76,28 @@ namespace SimpleChat.Models
                         }                      
                     }
                     if (find == true)
-                    {
+                    {                    
                         break;
                     }
-                }
-            }
-        }
+                }               
+            }   
+                 
+        }       
         public static void AddUserInSearch(string id, bool IM, bool SM, double lat, double lon,string Topic)
-        {           
-            UsersInSearch.Add(new User { ConnectionId = id ,IM=IM,SM=SM,lat=lat,lon=lon,Topic=Topic});
+        {
+            if (UsersInSearch.Count == 0)
+            {
+                var hub = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
+                Binder binder = new Binder(hub);
+                Thread BindingThread = new Thread(binder.BindUsers);
+                UsersInSearch.Add(new User { ConnectionId = id, IM = IM, SM = SM, lat = lat, lon = lon, Topic = Topic });
+                BindingThread.Start();
+            }
+            else
+            {
+                UsersInSearch.Add(new User { ConnectionId = id, IM = IM, SM = SM, lat = lat, lon = lon, Topic = Topic });
+            }               
+            
         }
         public static void DeleteUserInSearch(string Id)
         {

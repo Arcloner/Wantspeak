@@ -24,9 +24,10 @@ function onicecandidateEvent(event) {
 function onaddstreamEvent(event) {
     console.log("pc_onaddstream()");
     document.querySelector('video').srcObject = event.stream;
-    $('#Video').attr("style", "display:normal");
+    $('#Video').attr("style", "display:normal;background:black");
     $('#VideoStream').attr("style", "display:normal");
     $('#Disconnect').attr("style", "display:normal");
+    $('#Disconnectvideoblock').attr("style", "display:normal");
     setVideoSize();
     document.querySelector('video').play();
 }

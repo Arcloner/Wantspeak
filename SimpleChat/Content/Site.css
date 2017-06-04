@@ -20,10 +20,31 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
 div.ChatRoom {
     overflow:scroll;
     overflow-x:hidden;    
     width:50%;    
+}
+.main {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;  
+  z-index: 2;
+  overflow: hidden;  
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }

@@ -35,7 +35,8 @@
         addEventListener("keypress", SendByEnter);
         $('#loginBlock').hide();
         $('#Loading').attr("style", "visibility:hidden");
-        $('#chatBody').attr("style", "visibility:visible");
+        //$('#chatBody').attr("style", "visibility:visible");
+        $('#NewChat').attr("style", "visibility:visible");
     }    
     chat.client.showCallNotification = function ()
     {
@@ -46,7 +47,7 @@
     chat.client.onCall = function ()
     {
         $('#OnCall').attr("style", "visibility:visible");
-        $('#AnswerLoading').attr("style", "visibility:visible");
+        $('#AnswerLoading').attr("style", "visibility: visible;z-index: 1;position: relative;margin-right: 0;");
         $('#CallButton').attr("style", "visibility:hidden");
     }
     chat.client.onConnected = function (id, allUsers) { 
@@ -87,6 +88,7 @@
         StopStream();
         document.querySelector('video').srcObject = null;
         $('#Video').attr("style", "display:none");
+        $('#Disconnectvideoblock').attr("style", "visibility:hidden");
         $('#CallButton').attr("style", "display:normal");
     }
     $('#Accept').click(function () {
@@ -105,7 +107,8 @@
         $('#btnSearch').attr("style", "visibility:visible");
         $('#sendmessage').click(function () {                        
             chat.server.sendTo($('#InterlocutorsId').val(), $('#hdId').val(), $('#message').val());
-                $('#message').val('');          
+            $('#message').val('');
+            
         });
         $('#CallButton').click(function () {
             getUserMedia_starts();
@@ -121,7 +124,7 @@
                     ChosenTopic = Topics[i].id;
                 }
             }
-            $('#Loading').attr("style", "visibility:visible");
+            $('#Loading').attr("style", "visibility: visible;z-index: 1;position: relative;margin-right: 0;");
             if ($('#btnSearch').attr("style") != "visibility:hidden") {
                 var IM;
                 var SM;
@@ -174,6 +177,7 @@ $(window).resize(setChatroomHeight);
 function DisconnectClick()
 {
     chat.server.disconnect($('#InterlocutorsId').val(), $('#hdId').val());
+
 }
 
  function BackToSelect() {

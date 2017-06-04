@@ -9,7 +9,11 @@ namespace SimpleChat.Hubs
 {
     public class ChatHub : Hub
     {                        
-        static List<User> Users = new List<User>();        
+        static List<User> Users = new List<User>();
+        public void ReceiveMessage(string recipient, string message)
+        {
+            Clients.Client(recipient).receiveMessage(message);
+        }
         public void Send(string name, string message)
         {
             Clients.All.addMessage(name, message);

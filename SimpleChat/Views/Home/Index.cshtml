@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="~/Content/Loading.css">  
     <link rel="stylesheet" href="~/Content/Buttons.css"> 
     <link rel="stylesheet" href="~/Content/Site.css">  
+    <link rel="stylesheet" href="~/Content/TestChatCss.css">
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
+    <link rel="stylesheet" href="~/Content/TestChatCss.css">
+    <link rel="stylesheet" href="~/Content/GradientButton.css">
+    <link rel="stylesheet" href="~/Content/RadioNCheckbox.css">
     <title></title>
 </head>
 <body>
     <input id="latitude" value="" type="hidden">
     <input id="longitude" value="" type="hidden">
     <input id="GetUserMediaType" value="" type="hidden">   
-    <div style="position:absolute">
+    <div style="position:absolute;display:none">
     <label id="ShowMyId" style="margin-left:0px">
         Мой Id :</label ><br>
         <label id="ShowInterlocutorsId" style="margin-left:0px">
@@ -24,24 +30,41 @@
     <label id="ShowLongitude" style="margin-left:0px">
         lon:
     </label>
-        </div>    
-            <center>
-                <h2>Wantspeak</h2>                
-                </center>
+        </div>  
+    <div id="Loading" class="spinner" style="display:none">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>              
                 <div class="main">
                     <div id="loginBlock">
                         <center>
-                            <p>
-                                <b> Я:</b><br>
-                                <input id="IM" type="radio" name="GenderI" value="false" checked> М
-                                <input id="IW" type="radio" name="GenderI" value="false">Ж<Br>
-                                <b>  Общаться с:</b><br>
-                                <input id="SM" type="radio" name="GenderSearch" value="false"> М
-                                <input id="SW" type="radio" name="GenderSearch" value="false" checked>Ж<Br>
-                            </p>
-                            <b>  Темы для общения:</b><br>
+                            <h2>Wantspeak</h2>
                         </center>
-                        <form id="TopicsForm">
+                        <center>
+                            <p>
+                                <div class="center-on-page">                                    
+                                    <b> Я:</b><br>
+                                    <input checked type="radio" name="rb" id="IM" />
+                                    <label for="IM">M</label>
+                                    <input type="radio" name="rb" id="IW" />
+                                    <label for="IW">Ж</label><br>                              
+                                    @*<input id="IM" type="radio" name="GenderI" value="false" checked> М
+                                    <input id="IW" type="radio" name="GenderI" value="false">Ж<Br>*@
+                                    <b>  Общаться с:</b><br>
+                                    <input checked type="radio" name="rb2" id="SM" />
+                                    <label for="SM">М</label>
+                                    <input type="radio" name="rb2" id="SW" />
+                                    <label for="SW">Ж</label>
+                                    @*<input id="SM" type="radio" name="GenderSearch" value="false"> М
+                                    <input id="SW" type="radio" name="GenderSearch" value="false" checked>Ж<Br>*@
+                                    </div>
+</p>
+                            @*<b>  Темы для общения:</b><br>*@
+                        </center>
+                        <form id="TopicsForm" style="display:none">
                         <div style="position:absolute;margin-left:30%"><input id="Автомобили" type="radio" name="Topics[]" value="false"> Автомобили</div>
                         <div style="position:absolute;margin-left:60%"><input id="Автоспорт" type="radio" name="Topics[]" value="false" >Автоспорт</div><Br>
                         <div style="position:absolute;margin-left:30%"><input id="Азартные игры" type="radio" name="Topics[]" value="false"> Азартные игры</div>
@@ -76,36 +99,27 @@
                         <div style="position:absolute;margin-left:60%"><input id="Экстрим" type="radio" name="Topics[]" value="false">Экстрим</div><Br>
                         <div style="position:absolute;margin-left:30%"><input id="Юмор" type="radio" name="Topics[]" value="false"> Юмор</div>
                         <div style="position:absolute;margin-left:60%"><input id="Языки" type="radio" name="Topics[]" value="false">Языки</div><Br>
-                            </form>
-                        <div id="Loading" class="spinner" style="display:none">
-                            <div class="rect1"></div>
-                            <div class="rect2"></div>
-                            <div class="rect3"></div>
-                            <div class="rect4"></div>
-                            <div class="rect5"></div>
+                            </form>                        
+                        @*<a id="btnSearch" style="visibility:hidden" href="#" class="Google"><center><h2>Искать</h2></center></a>*@
+                        <div id="btnSearch" class="button-container">
+                            <a href="#" class="btn"><span>Click Me</span></a>
                         </div>
-                        <a id="btnSearch" style="visibility:hidden" href="#" class="Google"><center><h2>Искать</h2></center></a>
                     </div>
-                    <div id="chatBody" style="visibility:hidden">
-                        <a id="DisconnectFromTalk" onclick="BackToSelect()" style="display:normal;margin-top:0px" href="#" class="DisconnectFromTalk"><h2>Отключиться</h2></a>
-                        <center id="Video"><p id="DisconnectClick"><img id="Disconnect" onclick="DisconnectClick()" style="display:none;position:fixed;z-index:10" src="~/Content/IMGs/Disconnectt.jpg"><video id="VideoStream" style="display:none" autoplay></video></p> </center>
+                    <div id="chatBody" style="visibility:hidden">                        
+                        <a id="DisconnectFromTalk" onclick="BackToSelect()" style="display:normal;margin-top:0px" href="#" class="DisconnectFromTalk"><h2>Отключиться</h2></a>                        
                         <div id="header"></div>
                         <center>
                         <div id="inputForm">                                                      
                             <input type="text" id="message" placeholder="сообщение" />
-                            <input type="button" id="sendmessage" value="Отправить" />
+                            <input type="button" id="sendmessage" value="Отправить" />                            
                         </div>
+                            @*<img height="25px" width="25px" id="CallButton" src="~/Content/IMGs/Камера.jpg">*@
                         <div id="chatroom" class="ChatRoom"></div>
                             </center>
                         <hr>
                         <div id="chatusers" style="display:none">
                             <p><b>Все пользователи</b></p>
-                        </div>
-                        <div id="CallNotification" style="visibility:hidden">
-                            Собеседник вас вызывает ...
-                            <a id="Accept"style="color:greenyellow;margin-left:50%" href="#" class="Google"><center><h2>Принять</h2></center></a>
-                            <a id="Reject" style="color:red;margin-right:50%" href="#" class="Google"><center><h2>Отклонить</h2></center></a>
-                            </div>
+                        </div>                 
                         <div id="OnCall" style="visibility:hidden">
                             Ожидаем ответа ...
                             <div id="AnswerLoading" class="spinner" style="visibility:hidden">
@@ -115,14 +129,39 @@
                                 <div class="rect4"></div>
                                 <div class="rect5"></div>
                             </div>
+                            </div>                                                                  
+                        </div>
+                    <div id="NewChat" class="chat">
+                        <center id="Video" style="display:none"><video id="VideoStream" style="display:none" autoplay></video> </center>
+                        <div class="chat-title">
+                            <h1>Stranger</h1>
+                            <h2>Wantspeak</h2>
+                            <figure class="avatar">
+                                <img src="~/Content/IMGs/Лох.jpg" />
+                            </figure>
+                            <div id="CallNotification" style="visibility:hidden">                                                           
+                                <button id="Accept" type="submit" class="AcceptButton">Accept call</button>
+                                <button id="Reject" type="submit" class="RejectButton">Reject call</button>                               
                             </div>
-                        <a id="CallButton" href="#" class="Google"><center><h2>Позвонить собеседнику</h2></center></a>                                              
-                        </div>                    
+                            <div id="Disconnectvideoblock" style="visibility:hidden">
+                            <button onclick="DisconnectClick()" id="Disconnectvideo" type="submit" class="DisconnectvideoButton">Disconnect video</button>
+                                </div>
+                            <button id="CallButton" type="submit" class="callbutton">Video call</button>
+                        </div>
+                        <div class="messages">
+                            <div class="messages-content"></div>
+                        </div>
+                        <div class="message-box">
+                            <textarea type="text" class="message-input" placeholder="Type message..."></textarea>                            
+                            <button type="submit" class="message-submit">Send</button>                            
+                        </div>
+                    </div>                    
                     <input id="hdId" type="hidden" />
                     <input id="username" type="hidden" />
                     <input id="InterlocutorsId" type="hidden">
                 </div>
             </center>
+    <div class="bg"></div>
             <script src="~/Scripts/jquery-1.10.2.min.js"></script>
             <!--Ссылка на библиотеку SignalR -->
             <script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
@@ -131,6 +170,8 @@
             <script src="~/Scripts/util.js"></script>    
     <script src="~/Scripts/webrtc-adapter/out/adapter.js" ></script>
     <script src="~/Scripts/WebRTC.js"></script>  
-    <script src="~/Scripts/Locator.js"></script>
+    <script src="~/Scripts/Locator.js"></script>    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+    <script src="~/Scripts/Chat/FabioChat.js"></script>
 </body>
 </html>
