@@ -3,6 +3,34 @@
 }
 <!DOCTYPE html>
 <html>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter44888524 = new Ya.Metrika({
+                    id:44888524,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/44888524" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <head>
     <link rel="stylesheet" href="~/Content/Loading.css">  
     <link rel="stylesheet" href="~/Content/Buttons.css"> 
@@ -46,18 +74,18 @@
                         <center>
                             <p>
                                 <div class="center-on-page">                                    
-                                    <b> Я:</b><br>
+                                    <b> I'm:</b><br>
                                     <input checked type="radio" name="rb" id="IM" />
                                     <label for="IM">M</label>
                                     <input type="radio" name="rb" id="IW" />
-                                    <label for="IW">Ж</label><br>                              
+                                    <label for="IW">W</label><br>                              
                                     @*<input id="IM" type="radio" name="GenderI" value="false" checked> М
                                     <input id="IW" type="radio" name="GenderI" value="false">Ж<Br>*@
-                                    <b>  Общаться с:</b><br>
+                                    <b>  Want speak with:</b><br>
                                     <input checked type="radio" name="rb2" id="SM" />
-                                    <label for="SM">М</label>
+                                    <label for="SM">M</label>
                                     <input type="radio" name="rb2" id="SW" />
-                                    <label for="SW">Ж</label>
+                                    <label for="SW">W</label>
                                     @*<input id="SM" type="radio" name="GenderSearch" value="false"> М
                                     <input id="SW" type="radio" name="GenderSearch" value="false" checked>Ж<Br>*@
                                     </div>
@@ -102,7 +130,7 @@
                             </form>                        
                         @*<a id="btnSearch" style="visibility:hidden" href="#" class="Google"><center><h2>Искать</h2></center></a>*@
                         <div id="btnSearch" class="button-container">
-                            <a href="#" class="btn"><span>Click Me</span></a>
+                            <a href="#" class="btn"><span>Search</span></a>
                         </div>
                     </div>
                     <div id="chatBody" style="visibility:hidden">                        
@@ -139,7 +167,7 @@
                             <figure class="avatar">
                                 <img src="~/Content/IMGs/Лох.jpg" />
                             </figure>
-                            <div id="CallNotification" style="visibility:hidden">                                                           
+                            <div id="CallNotification" style="visibility:hidden">                                                                                          
                                 <button id="Accept" type="submit" class="AcceptButton">Accept call</button>
                                 <button id="Reject" type="submit" class="RejectButton">Reject call</button>                               
                             </div>

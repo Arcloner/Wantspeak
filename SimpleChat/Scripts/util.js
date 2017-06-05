@@ -42,7 +42,8 @@
     {
         $('#CallNotification').attr("style", "visibility:visible");
         $('#AnswerLoading').attr("style", "visibility:hidden");
-        $('#CallButton').attr("style", "visibility:hidden");        
+        $('#CallButton').attr("style", "visibility:hidden");
+        CallSound();
     }    
     chat.client.onCall = function ()
     {
@@ -92,6 +93,7 @@
         $('#CallButton').attr("style", "display:normal");
     }
     $('#Accept').click(function () {
+        StopCallSound();
         getUserMedia_starts();
         $('#GetUserMediaType').attr("value", "Accept");             
     });
@@ -99,6 +101,7 @@
         chat.server.disconnect($('#InterlocutorsId').val(), $('#hdId').val());
     });
     $('#Reject').click(function () {
+        StopCallSound();
         chat.server.callRejected($('#InterlocutorsId').val(), $('#hdId').val());
     });
     $.connection.hub.start().done(function () {       
@@ -187,4 +190,14 @@ function DisconnectClick()
     chat.server.sendAnotherDisconnect($('#InterlocutorsId').val());    
     $('#ShowInterlocutorsId').text("Связан с :");
     document.getElementById('chatroom').innerHTML = '';
-}
+ }
+ var audio = new Audio();
+ function CallSound() {
+     audio.src = "Audio/zvuki-zvonok_stacionarnogo_telefona.mp3";
+     audio.autoplay = true;
+     audio.loop = true; 
+ }
+ function StopCallSound()
+ {
+     audio.pause();
+ }
