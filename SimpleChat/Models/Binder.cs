@@ -39,7 +39,7 @@ namespace SimpleChat.Models
                         FromNullExeption:
                         try
                         {
-                            if (LocalUsersInSearch[i].SM == LocalUsersInSearch[z].IM && LocalUsersInSearch[z].SM == LocalUsersInSearch[i].IM && LocalUsersInSearch[i] != LocalUsersInSearch[z]&&LocalUsersInSearch[i].Topic==LocalUsersInSearch[z].Topic)
+                            if (LocalUsersInSearch[i].SM == LocalUsersInSearch[z].IM && LocalUsersInSearch[z].SM == LocalUsersInSearch[i].IM && LocalUsersInSearch[i] != LocalUsersInSearch[z])
                             {
                                 double distance = Math.Sqrt(Math.Pow(LocalUsersInSearch[i].lat - LocalUsersInSearch[z].lat, 2) + Math.Pow(LocalUsersInSearch[i].lon - LocalUsersInSearch[z].lon, 2));
                                 if (MinDistance == -1 || distance < MinDistance)
@@ -83,19 +83,19 @@ namespace SimpleChat.Models
             }   
                  
         }       
-        public static void AddUserInSearch(string id, bool IM, bool SM, double lat, double lon,string Topic)
+        public static void AddUserInSearch(string id, bool IM, bool SM, double lat, double lon)
         {
             if (UsersInSearch.Count == 0)
             {
                 var hub = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
                 Binder binder = new Binder(hub);
                 Thread BindingThread = new Thread(binder.BindUsers);
-                UsersInSearch.Add(new User { ConnectionId = id, IM = IM, SM = SM, lat = lat, lon = lon, Topic = Topic });
+                UsersInSearch.Add(new User { ConnectionId = id, IM = IM, SM = SM, lat = lat, lon = lon});
                 BindingThread.Start();
             }
             else
             {
-                UsersInSearch.Add(new User { ConnectionId = id, IM = IM, SM = SM, lat = lat, lon = lon, Topic = Topic });
+                UsersInSearch.Add(new User { ConnectionId = id, IM = IM, SM = SM, lat = lat, lon = lon});
             }               
             
         }

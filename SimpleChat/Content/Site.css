@@ -27,6 +27,30 @@ div.ChatRoom {
     overflow-x:hidden;    
     width:50%;    
 }
+.bg {
+    position:absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+   background: url(IMGs/photodune-5264132.jpg) no-repeat;
+    -moz-background-size: 100%; 
+    -webkit-background-size: 100%;  
+    -o-background-size: 100%; 
+    background-size: 100%;  
+    -webkit-filter: blur(70px);
+          filter: blur(70px);
+  -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+           z-index: 1;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+           background-size:100% 100%;
+}
+
 .main {
     position: absolute;
   top: 50%;
@@ -47,4 +71,59 @@ div.ChatRoom {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+.title {
+    color:#bdbdbd;
+  /* чтобы линии не выходили за ширину блока заголовка */
+  overflow: hidden;
+}
+.title:before,
+.title:after {
+  content: '';
+
+  /* делаем линию строчно-блочной */
+  display: inline-block;
+
+  /* выравниваем вертикально по середине */
+  vertical-align: middle;
+
+  /* не позволяем ширине превысить 100% (будет добавлен бордюр) */
+  box-sizing: border-box;
+
+  /* установка ширины в 100% делает линию равной ширине тега заголовка
+  ** благодаря этому линия заполнит все свободное пространство
+  ** слева и справа от текста
+  */
+  width: 100%;
+  height: 3px;
+  background: #bdbdbd;
+
+  /* добавляем к линии левый и правый бордюр цветом основного фона заголовка
+  ** благодаря этому создается нужный отступ между линиями и текстом
+  */
+  border: solid #FFF;
+  border-width: 0 10px;
+}
+.title:before {
+  /* смещаем левую линию влево отрицательным отступом, равным 100% ширины
+  ** благодаря этому линия встает слева от текста
+  */
+  margin-left: -100%;
+}
+.title:after {
+  /* смещаем правую линию вправо отрицательным отступом, равным 100% ширины
+  ** благодаря этому линия встает справа от текста
+  */
+  margin-right: -100%;
+}
+.SubmitBTN {
+    background: #69c773;
+    border: 0;
+    color: #fff;
+    padding: 10px;
+    font-size: 20px;
+    width: 100%;
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
 }

@@ -1,4 +1,5 @@
-﻿$(function () {    
+﻿var IsWebRTCWorking = false;
+$(function () {
     $('#chatBody').hide();
     $('#loginBlock').show();    
     var chat = $.connection.chatHub;      
@@ -24,19 +25,27 @@
     }
     chat.client.AnotherDisconnect = function ()
     {
+        if (IsWebRTCWorking == true)
+        {
+            chat.server.disconnect($('#InterlocutorsId').val(), $('#hdId').val());
+        }
         $('#loginBlock').show();
-        $('#chatBody').attr("style", "visibility:hidden");
-        $('#btnSearch').attr("style", "visibility:visible");        
-        $('#ShowInterlocutorsId').text("Связан с :");
-        document.getElementById('chatroom').innerHTML = '';
+        $('#NewChat').attr("style", "visibility:hidden;");
+        $('#btnSearch').attr("style", "display:block;");        
+        $('#InterlocutorsId').val() = "";
     }
     chat.client.showChat= function()
     {
+        var url = "/chat";
         addEventListener("keypress", SendByEnter);
         $('#loginBlock').hide();
         $('#Loading').attr("style", "visibility:hidden");
         //$('#chatBody').attr("style", "visibility:visible");
         $('#NewChat').attr("style", "visibility:visible");
+        if (url != window.location) {
+            window.history.pushState(null, null, url);
+        }
+        return false;
     }    
     chat.client.showCallNotification = function ()
     {
@@ -104,31 +113,25 @@
         StopCallSound();
         chat.server.callRejected($('#InterlocutorsId').val(), $('#hdId').val());
     });
-    $.connection.hub.start().done(function () {       
-        LoadMap();        
+    $.connection.hub.start().done(function () {                         
         chat.server.connect();
-        $('#btnSearch').attr("style", "visibility:visible");
+        $('#btnSearch').attr("style", "display:block;");
         $('#sendmessage').click(function () {                        
             chat.server.sendTo($('#InterlocutorsId').val(), $('#hdId').val(), $('#message').val());
             $('#message').val('');
             
         });
+        $('#Upload').click(function () {
+
+        });
         $('#CallButton').click(function () {
             getUserMedia_starts();
             $('#GetUserMediaType').attr("value", "Call");                   
         });
-        $('#btnSearch').click(function () {
-            var TopicsForm = document.forms.TopicsForm;
-            var ChosenTopic;
-            var Topics = TopicsForm.elements['Topics[]'];
-            for (var i = 0; i < Topics.length; i++) {
-                if ($('#'+Topics[i].id).prop('checked'))
-                {
-                    ChosenTopic = Topics[i].id;
-                }
-            }
-            $('#Loading').attr("style", "visibility: visible;z-index: 1;position: relative;margin-right: 0;");
-            if ($('#btnSearch').attr("style") != "visibility:hidden") {
+        $('#btnSearch').click(function () {            
+            $('#Loading').attr("style", "visibility: visible;z-index: 5;position: relative;margin-right: 0;");
+            $('#btnSearch').attr("style", "display:none;");
+            //if ($('#btnSearch').attr("style") != "visibility:hidden;") {
                 var IM;
                 var SM;
                 if ($('#IM').prop("checked") == true) {
@@ -139,9 +142,8 @@
                     SM = true;
                 }
                 else { SM = false; }                
-                chat.server.startSearch(IM, SM, $('#latitude').attr("value"), $('#longitude').attr("value"),ChosenTopic)              
-            }           
-            $('#btnSearch').attr("style", "visibility:hidden");
+                chat.server.startSearch(IM, SM, $('#latitude').attr("value"), $('#longitude').attr("value"))              
+            //}                      
         });     
     });
 });
@@ -183,13 +185,15 @@ function DisconnectClick()
 
 }
 
- function BackToSelect() {
+function BackToSelect() {
+    if (IsWebRTCWorking == true) {
+        chat.server.disconnect($('#InterlocutorsId').val(), $('#hdId').val());
+    }
     $('#loginBlock').show();
-    $('#chatBody').attr("style", "visibility:hidden");
-    $('#btnSearch').attr("style", "visibility:visible");
-    chat.server.sendAnotherDisconnect($('#InterlocutorsId').val());    
-    $('#ShowInterlocutorsId').text("Связан с :");
-    document.getElementById('chatroom').innerHTML = '';
+    $('#NewChat').attr("style", "visibility:hidden;");
+    $('#btnSearch').attr("style", "display:block");
+    chat.server.sendAnotherDisconnect($('#InterlocutorsId').val());
+    $('#InterlocutorsId').val() = "";
  }
  var audio = new Audio();
  function CallSound() {
@@ -201,3 +205,33 @@ function DisconnectClick()
  {
      audio.pause();
  }
+ function GoToHTTPS()
+ {
+     if (document.location.href == "http://wantspeak.azurewebsites.net/")
+     {
+         document.location.replace("https://wantspeak.azurewebsites.net/");
+     }
+ }
+ document.addEventListener("DOMContentLoaded", GoToHTTPS);
+ window.onload = function () {
+     var ModelHere = document.getElementById("ModelHere").value;
+     if (ModelHere == "true") {
+         WriteCookie("ModelHere", "true");
+         WriteCookie("Nickname", document.getElementById(Nickname).value);
+         WriteCookie("Old", document.getElementById(Old).value);
+         WriteCookie("City", document.getElementById(City).value);
+         WriteCookie("Sex", document.getElementById(Sex).value);
+     }
+     else {
+         WriteCookie("ModelHere", "false");
+     }
+ }
+ history.pushState(null, null, location.href);
+ $(window).bind('popstate', function () {
+     if ($('#InterlocutorsId').val() == null || $('#InterlocutorsId').val() == undefined || $('#InterlocutorsId').val() == "")
+     { }
+     else
+     {
+         BackToSelect();
+     }
+ });

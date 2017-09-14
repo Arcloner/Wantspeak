@@ -30,6 +30,7 @@ function onaddstreamEvent(event) {
     $('#Disconnectvideoblock').attr("style", "display:normal");
     setVideoSize();
     document.querySelector('video').play();
+    IsWebRTCWorking = true;
 }
 function StopStream()
 {

@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+@{
+    ViewBag.Title = "TestPictureUpload";
+}
+<style>
+    .center {
+        width: 200px; /* Ширина элемента в пикселах */
+        padding: 10px; /* Поля вокруг текста */
+        margin: auto; /* Выравниваем по центру */
+    }
+</style>
+<h3>Выберите файл для загрузки</h3>
+<div class="center">
+    <input type="file" name="upload" /><br>
+    <input id="Upload" type="submit" value="Загрузить" />
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script src="~/Scripts/util.js"></script>
+
+
+

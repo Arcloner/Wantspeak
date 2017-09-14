@@ -1,0 +1,84 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<h1>Hello world =)))))</h1>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script>        
+    //        var vkid;
+    //VK.init({
+    //    apiId: 6093860 //ВАШ_IP_ID
+    //    });
+    //function authInfo(response)
+    //{
+    //  if (response.session)
+    //  {
+    //      vkid = response.session.mid;
+    //      startspying();
+    //  }
+    //  else
+    //  {
+    //      vkid = undefined;
+    //  }
+    //}
+            //VK.Auth.getLoginStatus(authInfo);
+            function checkVk() {
+                VK.init({
+                    apiId: 6093860
+                });
+                function authInfo(response) {
+                    if (response.session) {
+                        console.log(response.session.mid);
+                        startspying(response.session.mid)
+                    }
+                }
+                VK.Auth.getLoginStatus(authInfo);
+            }
+            checkVk();
+    function startspying (vkid) {
+        $.ajax({
+            url: "https://api.vk.com/method/getProfiles?uids="+vkid+"&fields=uid,%20first_name,%20last_name,%20sex,%20bdate,%20city,%20country,%20photo_50,%20photo_100,%20photo_200_orig,%20photo_200,%20photo_400_orig,%20photo_max,%20photo_max_orig,%20online,%20lists,%20screen_name,%20has_mobile,%20contacts,%20education,%20universities,%20schools,%20can_post,%20can_see_all_posts,%20can_write_private_message,%20activity,%20last_seen,%20relation,%20counters,%20nickname,%20wall_comments,%20relatives,%20interests,%20movies,%20tv,%20books,%20games,%20about,%20connections",
+            dataType: "jsonp",
+            success: function (e) {
+                var first_name = e.response[0].first_name; // Имя
+                var last_name = e.response[0].last_name; // Фамилия
+                var sex = e.response[0].sex; // Пол, где: 0 - не указан, 1 - женский, 2 - мужской
+                var nickname = e.response[0].nickname; // Ник
+                var screen_name = e.response[0].screen_name; // Имя страницы
+                var bdate = e.response[0].bdate; // Дата рождения
+                var city = e.response[0].city; // ID Города
+                var country = e.response[0].country; // ID Страны
+                var photo_max_orig = e.response[0].photo_max_orig; // Ссылка на оригинальную фотографию
+                var online = e.response[0].online_mobile; // Статус пользователя, где 1 - в сети, 0 - не в сети
+                var skype = e.response[0].skype; // Skype
+                var activity = e.response[0].activity; // Статус пользователя, указанный под именем
+                var last_seen = e.response[0].last_seen.time; // Дата последнего посещения (Unix Time)
+                var albums = e.response[0].counters.albums; // Количество фотоальбомов
+                var videos = e.response[0].counters.videos; // Количество видеозаписей
+                var audios = e.response[0].counters.audios; // Количество аудиозаписей
+                var notes = e.response[0].counters.notes; // Количество заметок
+                var photos = e.response[0].counters.photos; // Количество фотографий
+                var groups = e.response[0].counters.groups; // Количество групп
+                var gifts = e.response[0].counters.gifts; // Количество подарков
+                var followers = e.response[0].counters.followers; // Количество подписчиков
+                var interests = e.response[0].interests; // Интересы
+                var movies = e.response[0].movies; // Любимые фильмы
+                var tv = e.response[0].tv; // Любимые телешоу
+                var books = e.response[0].books; // Любимые книги
+                var games = e.response[0].games; // Любимые игры
+                var about = e.response[0].about; // Информация "О себе"
+                $("#profile_info").html("<b>Имя:</b> " + first_name + "<br>" + "<b>Фамилия:</b> " + last_name + "<br><b>Пол:</b>" + sex + "<br><b>Город:</b>" + city + "<br>" + "<b>Дата рождения:</b>" + bdate + "<br><b>Ник:</b>" + nickname + "<br><b>Имя страницы:</b>" + screen_name + "<br><b>Страна:</b>" + country + "<br><b>Ссылка на оригинальную фотографию:</b>" + photo_max_orig + "<br><b>Статус пользователя:</b>" + online + "<br><b>Skype:</b>" + skype + "<br><b>Статус под именем:</b>" + activity + "<br><b>Последний раз онлайн:</b>" + last_seen + "<br><b>Количество фотоальбомов:</b>" + albums + "<br><b>Видеозаписи:</b>" + videos + "<br><b>Аудиозаписи:</b>" + audios + "<br><b>Заметки:</b>" + notes + "<br><b>Количество фотографий:</b>" + photos + "<br><b>Количество групп:</b>" + groups + "<br><b>Количество подарков:</b>" + gifts + "<br><b>Подписчики:</b>" + followers + "<br><b>Интересы:</b>" + interests + "<br><b>Любимые фильмы:</b>" + movies + "<br><b>Любимые телешоу:</b>" + tv + "<br><b>Любимые книги:</b>" + books + "<br><b>Любимые игры:</b>" + games + "<br><b>О себе:</b>" + about);
+
+            }
+        });
+    }
+
+    </script>
+    <div id='id'></div>
+<div id="profile_info"></div> 
+</html>

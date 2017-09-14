@@ -1,0 +1,134 @@
+﻿@*@{
+    Layout = null;
+}*@
+@model SimpleChat.Models.RegisterModel
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter44888524 = new Ya.Metrika({
+                    id:44888524,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/44888524" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<head>
+    <link rel="stylesheet" href="~/Content/Loading.css">
+    <link rel="stylesheet" href="~/Content/Buttons.css">
+    <link rel="stylesheet" href="~/Content/Site.css">    
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>    
+    <link rel="stylesheet" href="~/Content/GradientButton.css">
+    <link rel="stylesheet" href="~/Content/RadioNCheckbox.css">
+    <title></title>
+</head>
+<body>
+    @{ 
+        if (Model.City != null&&Model.Nickname!=null&&Model.Sex!=null)
+        {
+            <input id="ModelHere" value="true" type="hidden">
+            <input id="Nickname" value="@Model.Nickname" type="hidden">
+            <input id="Old" value="@Model.Old" type="hidden">
+            <input id="City" value="@Model.City" type="hidden">
+            <input id="Sex" value="@Model.Sex" type="hidden">
+        }
+        else
+        {
+            <input id="ModelHere" value="false" type="hidden">
+        }           
+    }
+    <input id="latitude" value="" type="hidden">
+    <input id="longitude" value="" type="hidden">
+    <input id="GetUserMediaType" value="" type="hidden">   
+    <div id="Loading" class="spinner" style="display:none">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+    <div class="main">
+        <div id="loginBlock">
+            <center>
+                <h2>Wantspeak</h2>
+            </center>
+            <center>                
+                <p>
+                    <div class="center-on-page">
+                        <b> I'm:</b><br>
+                        <input checked type="radio" name="rb" id="IM" />
+                        <label for="IM">M</label>
+                        <input type="radio" name="rb" id="IW" />
+                        <label for="IW">W</label><br>
+                        <b>  Want speak with:</b><br>
+                        <input checked type="radio" name="rb2" id="SM" />
+                        <label for="SM">M</label>
+                        <input type="radio" name="rb2" id="SW" />
+                        <label for="SW">W</label>
+                        <button id="btnSearch" class="SubmitBTN" type="submit">Search</button>
+                    </div>
+                </p>
+            </center>
+            @*<div id="btnSearch" class="button-container">                
+                <a href="#" class="btn"><span>Search</span></a>
+            </div>*@         
+        </div>
+        <div id="NewChat" class="chat">
+            <center id="Video" style="display:none"><video id="VideoStream" style="display:none" autoplay></video> </center>
+            <div class="chat-title">
+                <h1>Stranger</h1>
+                <h2>Wantspeak</h2>
+                <figure class="avatar">
+                    <img src="~/Content/IMGs/Лох.jpg" />
+                </figure>
+                <div id="CallNotification" style="visibility:hidden">
+                    <button id="Accept" type="submit" class="AcceptButton">Accept call</button>
+                    <button id="Reject" type="submit" class="RejectButton">Reject call</button>
+                </div>
+                <div id="Disconnectvideoblock" style="visibility:hidden">
+                    <button onclick="DisconnectClick()" id="Disconnectvideo" type="submit" class="DisconnectvideoButton">Disconnect video</button>
+                </div>
+                <button id="CallButton" type="submit" class="callbutton">Video call</button>
+            </div>
+            <div class="messages">
+                <div class="messages-content"></div>
+            </div>
+            <div class="message-box">
+                <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
+                <button type="submit" class="message-submit">Send</button>
+            </div>
+        </div>
+        <input id="hdId" type="hidden" />
+        <input id="username" type="hidden" />
+        <input id="InterlocutorsId" type="hidden">
+    </div>    
+    @Html.Hidden("RedirectToRegistration", Url.Action("Rigistration", "Account"));
+    @*<script src="~/Scripts/Overseer.js"></script>*@  
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/util.js"></script>
+    <script src="~/Scripts/webrtc-adapter/out/adapter.js"></script>
+    <script src="~/Scripts/WebRTC.js"></script>    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+    <script src="~/Scripts/Chat/FabioChat.js"></script>       
+</body>
+</html>

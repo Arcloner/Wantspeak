@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleChat.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,68 +10,49 @@ namespace SimpleChat.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Location()
-        {         
-            //// получаем ip клиента (если не локальный хост)
-            //string IP = "85.142.15.254"/*HttpContext.Request.UserHostAddress*/;
-            //string coordinates = "";
-            //// получаем географию
-            //ViewBag.Location = DefineLocation(IP, ref coordinates);
-            //ViewBag.Coords = coordinates;
+        public ActionResult Spy()
+        {                 
             return View();
         }
-        protected string DefineLocation(string IP, ref string coordinates)
+        public ActionResult MainPage(RegisterModel model)
         {
-            GeoBazaAPI geo = new GeoBazaAPI(Server.MapPath("~/BD/geobaza.dat"));
-            string result = "Не определено";
-            // получаем географию по ip
-            List<IPLocation> locList = geo.GetLocationByIP(IP);
-            if (locList != null && locList.Count != 0 && locList[0].ID != -1)
+            bool vkidHere;
+            bool ModelHere;
+            try
             {
-                IPLocation country = GetCountry(locList);
-
-                if (country != null)
-                    result = country.ISOID + ", " + country.NameRU + ", " + locList[0].NameRU + ", долгота: " + locList[0].Longitude + ", долгота: " + locList[0].Latitude;
-                else
-                    result = locList[0].NameRU + ", долгота: " + locList[0].Longitude + ", долгота: " + locList[0].Latitude;
-                coordinates = locList[0].Latitude + ", " + locList[0].Longitude;
+                string Model = HttpContext.Request.Cookies["ModelHere"].Value;
+                ModelHere = true;                       
             }
-
-            return result;
-        }
-        private IPLocation GetCountry(List<IPLocation> locList)
-        {
-            for (int i = 0; i < locList.Count; i++)
+            catch (NullReferenceException)
             {
-                if (locList[i].Type == LocationType.Country)
-                    return locList[i];
+                ModelHere = false;      
             }
-            return null;
+            try
+            {
+                string vkid = HttpContext.Request.Cookies["vkid"].Value;
+                vkidHere = true;
+            }
+            catch (NullReferenceException)
+            {
+                vkidHere = false;         
+            }                        
+            if (vkidHere == true || ModelHere == true)
+            {
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("Rigistration", "Account");
+            }
         }
-        public ActionResult Index()
+        public ActionResult TestPictureUpload(RegisterModel model)
         {
-            return View();
+            return View(model);
         }
-        public ActionResult TestChatDesign()
-        {
-            return View();
-        }
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";            
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-        public ActionResult Chat()
-        {
-            return View();
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase upload)
+        {            
+            return RedirectToAction("MainPage");
         }
     }
 }
