@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using SimpleChat.Models;
+using SimpleChat.DataBase;
 
 namespace SimpleChat.Controllers
 {
@@ -52,7 +53,12 @@ namespace SimpleChat.Controllers
                 var Sex = new HttpCookie("Sex", model.Sex);
                 Response.SetCookie(Sex);
             }
-            return RedirectToAction("MainPage", "Home", new { Nickname = model.Nickname,Old = model.Old,City=model.City,Sex=model.Sex });
+            using (WantspeakDbContext db = new WantspeakDbContext())
+            {
+                db.Users.Add(model);
+                db.SaveChanges();
+            }
+                return RedirectToAction("MainPage", "Home", new { Nickname = model.Nickname, Old = model.Old, City = model.City, Sex = model.Sex });
         }     
     }
 }

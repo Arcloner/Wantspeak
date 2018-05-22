@@ -208,6 +208,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataBase\WantspeakDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +221,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\WantspeakDatabase.mdf" />
+    <Content Include="App_Data\WantspeakDatabase_log.ldf">
+      <DependentUpon>WantspeakDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="Audio\zvuki-zvonok_stacionarnogo_telefona.mp3" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -403,9 +408,7 @@
     <Content Include="Views\Account\Rigistration.cshtml" />
     <Content Include="Views\Home\TestPictureUpload.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
