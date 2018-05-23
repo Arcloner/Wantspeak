@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wantspeak", "SimpleChat\Wantspeak.csproj", "{079871B0-483B-4F72-A91E-5D2F5D4277EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.AOP", "Automation.AOP\Automation.AOP.csproj", "{B52B7841-2071-45B8-8639-B891D90295D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Framework", "Automation.Framework\Automation.Framework.csproj", "{8F7E4023-AE1D-4067-9ED5-C8B50D8DEAB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Test", "Automation.Test\Automation.Test.csproj", "{4726F0EC-61DE-43C1-AE9C-9817059F7B44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Workspace", "Automation.Workspace\Automation.Workspace.csproj", "{334B8B64-2AB2-47A0-9011-E082DAE3AF32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +23,27 @@ Global
 		{079871B0-483B-4F72-A91E-5D2F5D4277EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{079871B0-483B-4F72-A91E-5D2F5D4277EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{079871B0-483B-4F72-A91E-5D2F5D4277EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B52B7841-2071-45B8-8639-B891D90295D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B52B7841-2071-45B8-8639-B891D90295D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B52B7841-2071-45B8-8639-B891D90295D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B52B7841-2071-45B8-8639-B891D90295D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F7E4023-AE1D-4067-9ED5-C8B50D8DEAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7E4023-AE1D-4067-9ED5-C8B50D8DEAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7E4023-AE1D-4067-9ED5-C8B50D8DEAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7E4023-AE1D-4067-9ED5-C8B50D8DEAB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4726F0EC-61DE-43C1-AE9C-9817059F7B44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4726F0EC-61DE-43C1-AE9C-9817059F7B44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4726F0EC-61DE-43C1-AE9C-9817059F7B44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4726F0EC-61DE-43C1-AE9C-9817059F7B44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334B8B64-2AB2-47A0-9011-E082DAE3AF32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334B8B64-2AB2-47A0-9011-E082DAE3AF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334B8B64-2AB2-47A0-9011-E082DAE3AF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{334B8B64-2AB2-47A0-9011-E082DAE3AF32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F78E179-ACC7-436E-91B1-160D863A4CD3}
 	EndGlobalSection
 EndGlobal
