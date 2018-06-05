@@ -53,11 +53,11 @@ namespace SimpleChat.Controllers
                 var Sex = new HttpCookie("Sex", model.Sex);
                 Response.SetCookie(Sex);
             }
-            using (WantspeakDbContext db = new WantspeakDbContext())
-            {
-                db.Users.Add(model);
-                db.SaveChanges();
-            }
+            //using (WantspeakDbContext db = new WantspeakDbContext())
+            //{
+            //    db.Users.Add(model);
+            //    db.SaveChanges();
+            //}
                 return RedirectToAction("MainPage", "Home", new { Nickname = model.Nickname, Old = model.Old, City = model.City, Sex = model.Sex });
         }     
     }

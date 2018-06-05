@@ -58,14 +58,14 @@
   <ItemGroup>
     <Compile Include="IoC\PageObjectsRegistration.cs" />
     <Compile Include="PageObjects\Interfaces\IRegisterPage.cs" />
-    <Compile Include="PageObjects\Interfaces\IResultsOfSearch.cs" />
+    <Compile Include="PageObjects\Interfaces\IChatPage.cs" />
     <Compile Include="PageObjects\Interfaces\IStartPage.cs" />
     <Compile Include="PageObjects\RegistrationPage.cs" />
-    <Compile Include="PageObjects\ResultsOfSearch.cs" />
+    <Compile Include="PageObjects\ChatPage.cs" />
     <Compile Include="PageObjects\StartPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\RegisterPageSteps.cs" />
-    <Compile Include="Steps\ResultsOfSearchSteps.cs" />
+    <Compile Include="Steps\ChatPageSteps.cs" />
     <Compile Include="Steps\StartPageSteps.cs" />
     <Compile Include="Users\Tester.cs" />
   </ItemGroup>

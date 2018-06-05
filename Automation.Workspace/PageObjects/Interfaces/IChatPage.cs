@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Automation.Workspace.PageObjects.Interfaces
 {
-    public interface IResultsOfSearch
+    public interface IChatPage
     {
-        void ClickSearchedFilm();
-        string GetTextOfSearchedFilm();
+        void SendKeysToMessageInput(string keys);
+        void ClickSendButton();
+        void ClickCallButton();
+        void ClickDisconnectCallButton();
     }
 }

@@ -88,8 +88,12 @@ namespace Automation.Framework.Drivers
                     Drivers.Add(driverKey, new InternetExplorerDriver());
                     break;
                 case WebBrowsers.Chrome:
+                    var driverService = ChromeDriverService.CreateDefaultService();
+                    var options = new ChromeOptions();
+                    options.AddArgument("use-fake-device-for-media-stream");
+                    options.AddArgument("use-fake-ui-for-media-stream");
                     driverKey = Guid.NewGuid();
-                    Drivers.Add(driverKey, new ChromeDriver());
+                    Drivers.Add(driverKey, new ChromeDriver(driverService, options));
                     break;
                 default:
                     driverKey = Guid.NewGuid();

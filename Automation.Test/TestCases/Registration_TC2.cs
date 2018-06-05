@@ -1,4 +1,5 @@
 ﻿using Automation.Test;
+using Automation.Test;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 namespace Automation.Test.TestCases
 {
     [TestClass]
-    public class Registration_TC2:BaseTestCase
+    public class Registration_TC2: BaseTestCase
     {
         [TestMethod]
         public void RegisterUser()
         {
-            testerNumberOne.AtRegisterPage().RegisterUser("Pinval", "21", "Mogilev");
+            tester.AtRegisterPage().RegisterUser("Pinval", "21", "Mogilev");
         }
     }
 }

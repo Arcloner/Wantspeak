@@ -28,9 +28,9 @@ namespace Automation.Workspace.Users
             return new StartPageSteps(driver.GetDriverKey(),resolver);
         }
 
-        public ResultsOfSearchSteps AtResultsOfSearchPage()
+        public ChatPageSteps AtChatPage()
         {
-            return new ResultsOfSearchSteps(driver.GetDriverKey(),resolver); 
+            return new ChatPageSteps(driver.GetDriverKey(),resolver); 
         }
 
         public RegisterPageSteps AtRegisterPage()

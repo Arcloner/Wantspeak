@@ -1,30 +1,29 @@
 ﻿using Automation.Workspace.Users;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Automation.Test
 {
     [TestClass]
-    public class BaseTestCase
+    public class TwoTestersBaseTestCase
     {
         readonly string basePage = "https://wantspeak.azurewebsites.net";
 
-        protected Tester tester = new Tester();
+        protected Tester testerNumberOne = new Tester();
+
+        protected Tester testerNumberTwo = new Tester();
 
         [TestInitialize]
         public void SetUp()
         {
-            tester.GoToPage(basePage);            
+            testerNumberOne.GoToPage(basePage);
+            testerNumberTwo.GoToPage(basePage);
         }
 
         [TestCleanup]
         public void TearDown()
         {
-            tester.FinishesWork();            
+            testerNumberOne.FinishesWork();
+            testerNumberTwo.FinishesWork();
         }
     }
 }

@@ -56,9 +56,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTestCase.cs" />
+    <Compile Include="TestCases\UserCanCallOtherUser_TC4.cs" />
+    <Compile Include="TestCases\UsersCanSendMessage_TC3.cs" />
+    <Compile Include="TwoTestersBaseTestCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCases\Registration_TC2.cs" />
-    <Compile Include="TestCases\TC1.cs" />
+    <Compile Include="TestCases\UsersFindEachOthers_TC1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

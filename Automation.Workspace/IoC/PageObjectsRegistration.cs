@@ -23,8 +23,8 @@ namespace Automation.Workspace.IoC
                      .Interceptors(InterceptorReference.ForType<PageLoggingInterceptor>()).Anywhere);
 
             kernel.Register(
-           Component.For<IResultsOfSearch>()
-                    .ImplementedBy<ResultsOfSearch>()
+           Component.For<IChatPage>()
+                    .ImplementedBy<ChatPage>()
                     .Interceptors(InterceptorReference.ForType<PageLoggingInterceptor>()).Anywhere);
 
             kernel.Register(

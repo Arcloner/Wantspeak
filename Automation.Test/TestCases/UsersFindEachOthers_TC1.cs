@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Automation.Test.TestCases
 {
     [TestClass]
-    public class TC1:BaseTestCase
+    public class UsersFindEachOther_TC1 : TwoTestersBaseTestCase
     {
         [TestInitialize]
         public void BeforeTest()
@@ -17,9 +17,10 @@ namespace Automation.Test.TestCases
             testerNumberTwo.AtRegisterPage().RegisterUser("User2", "21", "Mogilev");
         }
         [TestMethod]
-        public void UsersFindEachOthers()
+        public void UsersFindEachOther()
         {
-            
+            testerNumberOne.AtStartPage().StartSearch();
+            testerNumberTwo.AtStartPage().StartSearch();
         }
     }
 }

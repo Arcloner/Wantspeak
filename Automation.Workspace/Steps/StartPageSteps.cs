@@ -17,9 +17,8 @@ namespace Automation.Workspace.Steps
             startPage = resolver.For<IStartPage>(driverId);
         }
 
-        public void SearchFilm(string filmName)
-        {
-            startPage.SendKeysToSearchInput(filmName);
+        public void StartSearch()
+        {            
             startPage.ClickSearchButton();
         }
     }

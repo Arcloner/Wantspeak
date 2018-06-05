@@ -8,20 +8,13 @@ namespace Automation.Workspace.PageObjects
 {
     public class StartPage : BasePage, IStartPage
     {
-        public StartPage(Guid DriverKey) : base(DriverKey){}
+        public StartPage(Guid DriverKey) : base(DriverKey){}        
 
-        private IWebElement searchInput => Driver.GetDriver(DriverKey).FindElementByXPath("//div[contains(@class,'head')]/input[@placeholder]");
-
-        private IWebElement searchButton => Driver.GetDriver(DriverKey).FindElementByXPath("//div[contains(@class,'head')]//button[contains(@class,'search')]");
+        private IWebElement searchButton => Driver.GetDriver(DriverKey).FindElementById("btnSearch");        
 
         public void ClickSearchButton()
         {
-            searchButton.Click();
-        }
-
-        public void SendKeysToSearchInput(string keys)
-        {
-            searchInput.SendKeys(keys);
-        }
+            Perform.HowerThenClick(searchButton);
+        }        
     }
 }

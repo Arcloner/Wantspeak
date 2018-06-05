@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Automation.Workspace.PageObjects.Interfaces
 {
     public interface IStartPage
-    {
-        void SendKeysToSearchInput(string keys);
+    {        
         void ClickSearchButton();
     }
 }
