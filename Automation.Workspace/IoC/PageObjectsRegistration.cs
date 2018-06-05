@@ -27,6 +27,10 @@ namespace Automation.Workspace.IoC
                     .ImplementedBy<ResultsOfSearch>()
                     .Interceptors(InterceptorReference.ForType<PageLoggingInterceptor>()).Anywhere);
 
+            kernel.Register(
+           Component.For<IRegisterPage>()
+                    .ImplementedBy<RegistrationPage>()
+                    .Interceptors(InterceptorReference.ForType<PageLoggingInterceptor>()).Anywhere);
         }
     }
 }

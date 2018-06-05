@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="BaseTestCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCases\Registration_TC2.cs" />
     <Compile Include="TestCases\TC1.cs" />
   </ItemGroup>
   <ItemGroup>

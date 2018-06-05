@@ -6,20 +6,23 @@ namespace Automation.Test
     [TestClass]
     public class BaseTestCase
     {
-        readonly string basePage = "https://www.kinopoisk.ru/";
+        readonly string basePage = "https://wantspeak.azurewebsites.net";
 
-        protected Tester tester = new Tester();
+        protected Tester testerNumberOne = new Tester();
+
+        protected Tester testerNumberTwo = new Tester();
 
         [TestInitialize]
         public void SetUp()
         {
-            tester.GoToPage(basePage);
+            testerNumberOne.GoToPage(basePage);
+            testerNumberTwo.GoToPage(basePage);
         }
 
         [TestCleanup]
         public void TearDown()
         {
-            tester.FinishesWork();
+            testerNumberOne.FinishesWork();
         }
     }
 }

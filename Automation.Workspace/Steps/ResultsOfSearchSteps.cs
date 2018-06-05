@@ -13,9 +13,9 @@ namespace Automation.Workspace.Steps
     {
         IResultsOfSearch resultOfSearchPage;
 
-        public ResultsOfSearchSteps(Guid driverId)
+        public ResultsOfSearchSteps(Guid driverId,DependencyResolver resolver)
         {
-            resultOfSearchPage = DependencyResolver.For<IResultsOfSearch>(driverId);
+            resultOfSearchPage = resolver.For<IResultsOfSearch>(driverId);
         }
 
         public void CheckFoundFilmContains(string filmName)

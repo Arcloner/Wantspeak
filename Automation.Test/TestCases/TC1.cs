@@ -10,12 +10,16 @@ namespace Automation.Test.TestCases
     [TestClass]
     public class TC1:BaseTestCase
     {
-        [TestMethod]
-        public void TestUserCanGetExpectedResultOfSearch()
+        [TestInitialize]
+        public void BeforeTest()
         {
-            var filmToSearch = "Пираты карибского моря";
-            tester.AtStartPage().SearchFilm(filmToSearch);
-            tester.AtResultsOfSearchPage().CheckFoundFilmContains(filmToSearch);
+            testerNumberOne.AtRegisterPage().RegisterUser("User1", "21", "Mogilev");
+            testerNumberTwo.AtRegisterPage().RegisterUser("User2", "21", "Mogilev");
+        }
+        [TestMethod]
+        public void UsersFindEachOthers()
+        {
+            
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Automation.Workspace.Steps
     {
         IStartPage startPage;
 
-        public StartPageSteps(Guid driverId)
+        public StartPageSteps(Guid driverId,DependencyResolver resolver)
         {
-            startPage = DependencyResolver.For<IStartPage>(driverId);
+            startPage = resolver.For<IStartPage>(driverId);
         }
 
         public void SearchFilm(string filmName)

@@ -10,9 +10,9 @@ namespace Automation.AOP
 {
     public class DependencyResolver
     {
-        private static IWindsorContainer _container;
+        private IWindsorContainer _container;
 
-        static DependencyResolver()
+        public DependencyResolver()
         {
             if (_container == null)
             {
@@ -20,13 +20,13 @@ namespace Automation.AOP
             }
         }
 
-        public static void Register(IRegistration component)
-        {
+        public void Register(IRegistration component)
+        {            
             _container.Register(component);
         }
 
         //Resolve types
-        public static T For<T>(Guid DriverKey)
+        public T For<T>(Guid DriverKey)
         {
             Dictionary<string, object> arguments = new Dictionary<string, object>();
             arguments.Add("DriverKey", DriverKey);
